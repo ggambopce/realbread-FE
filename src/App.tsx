@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       
-      <h1>리얼 맛집</h1>
+      <h1>리얼 빵집</h1>
       <NaverMap />
       
       
