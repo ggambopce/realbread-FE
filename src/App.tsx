@@ -9,9 +9,9 @@ function App() {
   return (
     <>
       
-      <h1>리얼 빵집</h1>
+      <Header /> // 로고 + 로그인 상태
       <NaverMap />
-      
+      <BakeryDetail /> // 선택한 빵집 상세 모달
       
     </>
   )
