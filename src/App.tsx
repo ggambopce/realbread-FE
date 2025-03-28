@@ -1,19 +1,15 @@
-
+import { Routes, Route} from 'react-router-dom';
 import './App.css'
-import NaverMap from './components/NaverMap'
+import MapPage from './pages/MapPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
 
-  
-
   return (
-    <>
-      
-      <Header /> // 로고 + 로그인 상태
-      <NaverMap />
-      <BakeryDetail /> // 선택한 빵집 상세 모달
-      
-    </>
+    <Routes>
+      <Route path="/" element={<MapPage />}/>
+      <Route path="*" element={<NotFoundPage />}/>
+    </Routes>
   )
 }
 
