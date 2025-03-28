@@ -13,6 +13,8 @@ const NaverMap = () => {
 
     const map = new window.naver.maps.Map(mapElement.current, mapOptions);
 
+    
+
     new window.naver.maps.Marker({
       position: new window.naver.maps.LatLng(36.3504, 127.3845),
       map,
@@ -32,7 +34,32 @@ const NaverMap = () => {
       position: new window.naver.maps.LatLng(36.3654352, 127.3810672),
       map,
     });
+
+    // 내 위치 마커 추가
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+
+        const userPosition = new window.naver.maps.LatLng(latitude, longitude);
+
+        // 마커 추가
+        new window.naver.maps.Marker({
+          position: userPosition,
+          map,
+          icon: {
+            content: `<div style="background:#007bff;width:14px;height:14px;border-radius:50%;border:2px solid white;"></div>`,
+            anchor: new window.naver.maps.Point(10, 10),
+          },
+        });
+      },
+      (error) => {
+        console.error("위치 정보를 가져올 수 없습니다:", error);
+      }
+    );
+
+
   }, []);
+  
   
 
   return <div ref={mapElement} className="map-container" />;
