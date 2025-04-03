@@ -157,3 +157,150 @@ Http Status - 500 (Internal Server Error)
 }
 
 ==================================================================
+
+commentDelete(리뷰 삭제)
+
+- URL
+DELETE /api/comment/{boardNumber}
+
+- Header
+Authorization : Bearer Token
+
+- response
+
+성공
+Http Status - 200 (OK)
+{
+    code: "SU",
+    message: "Succese",
+}
+
+실패
+- 존재 하지 않는 게시물
+Http Status - 400 (Bad Request )
+{
+    code : "NB"
+    message : "Not Existed Board."
+}
+
+- 존재 하지 않는 유저
+Http Status - 400 (Bad Request )
+{
+    code : "NU"
+    message : "Not Existed User."
+}
+
+- 권한 없음
+Http Status - 400 (Forbidden )
+{
+    code : "NP"
+    message : "No Permission."
+}
+
+- 데이터베이스 에러
+Http Status - 500 (Internal Server Error)
+{
+    code : "DE"
+    message : "Database Error."
+}
+
+==================================================================
+
+commentWrite(리뷰 쓰기)
+
+- URL
+POST /api/v1/comment/
+
+- Header
+Authorization : Bearer Token
+
+- request
+
+{
+    *menuName: string,
+    *content: string,
+    commentImageList: string[]
+}
+
+- response
+
+성공
+Http Status - 200 (OK)
+{
+    code: "SU",
+    message: "Succese",
+}
+
+실패
+
+- 존재 하지 않는 유저
+Http Status - 400 (Bad Request )
+{
+    code : "NU"
+    message : "Not Existed User."
+}
+
+- 데이터베이스 에러
+Http Status - 500 (Internal Server Error)
+{
+    code : "DE"
+    message : "Database Error."
+}
+
+==================================================================
+
+commentUpdate(게시물 수정)
+
+- URL
+PATCH /api/comment/{boardNumber}
+
+- Header
+Authorization : Bearer Token
+
+- request
+
+{
+    *menuName: string,
+    *content: string,
+    commentImageList: string[]
+}
+
+- response
+
+성공
+Http Status - 200 (OK)
+{
+    code: "SU",
+    message: "Succese",
+}
+
+실패
+- 존재 하지 않는 게시물
+Http Status - 400 (Bad Request )
+{
+    code : "NB"
+    message : "Not Existed Board."
+}
+
+- 존재 하지 않는 유저
+Http Status - 400 (Bad Request )
+{
+    code : "NU"
+    message : "Not Existed User."
+}
+
+- 권한 없음
+Http Status - 400 (Forbidden )
+{
+    code : "NP"
+    message : "No Permission."
+}
+
+- 데이터베이스 에러
+Http Status - 500 (Internal Server Error)
+{
+    code : "DE"
+    message : "Database Error."
+}
+
+==================================================================
