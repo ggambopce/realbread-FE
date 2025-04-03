@@ -1,4 +1,162 @@
-==================================================================  ==================================================================
+signIn(로그인)
+- URL
+POST /api/v1/auth/sign-in
+
+- request
+{
+    *email : String,
+    *password : String,
+}
+
+- response
+
+성공
+Http Status - 200 (OK)
+{
+    code: "SU",
+    message: "Succese",
+}
+
+실패
+- 필수 정보 미입력, 로그인 실패
+Http Status - 401 (Unauthorized)
+{
+    code : "SF",
+    message : "Sign In Failed."
+}
+
+- 데이터베이스 에러
+Http Status - 500 (Internal Server Error)
+{
+    code : "DE"
+    message : "Database Error."
+}
+
+==================================================================
+
+signUp(회원가입)
+
+- URL
+POST /api/v1/auth/sign-up
+
+- request
+{
+    *email : String,
+    *password: String,
+    *nickname: String,
+    *telNumber: String,
+    *address: String,
+    adressDetail: String,
+}
+
+- response
+
+성공
+Http Status - 200 (OK)
+{
+    code: "SU",
+    message: "Succese",
+    token: "jwt...",
+    expiredDate: 123456789
+}
+
+실패
+- 필수 정보 미입력 / 이메일 포멧 불일치 / 비밀번호 8자 미만 / 전화번호 포멧 불일치 
+- 이메일 중복
+Http Status - 400 (Bad Request)
+{
+    code : "EE",
+    message : "Existed Email."
+}
+
+- 데이터베이스 에러
+Http Status - 500 (Internal Server Error)
+{
+    code : "DE"
+    message : "Database Error."
+}
+
+================================================================== 
+
+bakeryList(빵집 리스트)
+
+- URL
+GET /api/bakery-list/{pageNumber}
+
+
+- response
+
+성공
+Http Status - 200 (OK)
+{
+    code: "SU",
+    message: "Succese",
+    currentList: BakeryListItem[]
+}
+
+BakeryListItem 
+{
+    bakeryNumber: int,
+    title: string,
+    content: string,
+    boardTitleImage: string,
+    favoriteCount: int,
+    commentCount: int,
+    viewCount: int,
+    writeDateTime: string,
+    writerNickname: string,
+    writerProfileImage: string,
+}
+
+실패
+- 데이터베이스 에러
+Http Status - 500 (Internal Server Error)
+{
+    code : "DE"
+    message : "Database Error."
+}
+
+==================================================================
+
+WeeklyTop3List(주간 상위 3 게시물)
+
+- URL
+/api/v1/bakery/top-3
+
+
+- response
+
+성공
+Http Status - 200 (OK)
+{
+    code: "SU",
+    message: "Succese",
+    top3List: BakeryListItem[]
+}
+
+BakeryListItem 
+{
+    bakeryNumber: int,
+    title: string,
+    content: string,
+    boardTitleImage: string,
+    favoriteCount: int,
+    commentCount: int,
+    viewCount: int,
+    writeDateTime: string,
+    writerNickname: string,
+    writerProfileImage: string,
+}
+
+실패
+- 데이터베이스 에러
+Http Status - 500 (Internal Server Error)
+{
+    code : "DE"
+    message : "Database Error."
+}
+
+==================================================================
 
 popularWordList(인기 검색어 리스트)
 
@@ -249,7 +407,7 @@ Http Status - 500 (Internal Server Error)
 
 ==================================================================
 
-commentUpdate(게시물 수정)
+commentUpdate(리뷰 수정)
 
 - URL
 PATCH /api/comment/{boardNumber}
@@ -296,6 +454,46 @@ Http Status - 400 (Forbidden )
     message : "No Permission."
 }
 
+- 데이터베이스 에러
+Http Status - 500 (Internal Server Error)
+{
+    code : "DE"
+    message : "Database Error."
+}
+
+==================================================================
+
+userBoardList(특정 유저 댓글 리스트)
+
+- URL
+GET /api/v1/comment/user-comment-list/{email}
+
+
+- response
+
+성공
+Http Status - 200 (OK)
+{
+    code: "SU",
+    message: "Succese",
+    userBoardList: CommentListItem[]
+}
+
+CommentListItem 
+{
+    boardNumber: int,
+    title: string,
+    content: string,
+    boardTitleImage: string,
+    favoriteCount: int,
+    commentCount: int,
+    viewCount: int,
+    writeDateTime: string,
+    writerNickname: string,
+    writerProfileImage: string,
+}
+
+실패
 - 데이터베이스 에러
 Http Status - 500 (Internal Server Error)
 {
