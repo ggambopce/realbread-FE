@@ -1,6 +1,8 @@
-export default interface CommentListItem {
+export default interface CommentListItemType {
+    email: string;
     nickname: string;
     profileImage: string | null;
     writeDatetime: string;
-    content: string;
+    menu: string;
+    comment: string;
 }
