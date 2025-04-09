@@ -3,9 +3,10 @@ export default interface BakeryListItemType {
     title: string;
     address: string;
     roadAddress: string;
-    link: string;
-    mapx: string;
-    mapy: string;
+    imageUrl: string;
+    commentCount: number;
+    favoriteCount: number;
+    viewCount: number;
 
 
 }
