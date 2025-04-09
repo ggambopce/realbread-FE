@@ -1,0 +1,73 @@
+.backery-list-item {
+    padding: 24px;
+
+    background-color: rgba(255, 255, 255, 1);
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    cursor: pointer;
+}
+
+.backery-list-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.backery-list-item-main-box {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.backery-list-item-top {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.backery-list-item-title {
+    color: rgba(0, 0, 0, 1);
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 140%;
+}
+
+.backery-list-item-middle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.backery-list-item-bottom {
+
+}
+
+.backery-list-item-counts {
+    color: rgba(0, 0, 0, 0.7);
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 140%;
+
+}
+
+.backery-list-item-image-box {
+    
+    width: 152px;
+    height: 152px;
+}
+
+.backery-list-item-image {
+    border-radius: 10px;
+
+    width: 100%;
+    height: 100%;
+
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+}
