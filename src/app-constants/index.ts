@@ -6,4 +6,5 @@ export const BAKERY_PATH = () => '/bakery';
 export const BAKERY_DETAIL_PATH = (bakeryNumber: string | number) => `detail/${bakeryNumber}`;
 export const BAKERY_WRITE_PATH = () => 'write';
 export const BAKERY_UPDATE_PATH = (bakeryNumber: string | number) => `update/${bakeryNumber}`;
+export const EDUBOT_RECODER = () => '/edubot';
  

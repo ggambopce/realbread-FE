@@ -1,11 +1,12 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Container from './layouts/container'
-import { BAKERY_DETAIL_PATH, BAKERY_PATH, MAIN_PATH, SEARCH_PATH, USER_PATH } from './app-constants/index'
+import { BAKERY_DETAIL_PATH, BAKERY_PATH, EDUBOT_RECODER, MAIN_PATH, SEARCH_PATH, USER_PATH } from './app-constants/index'
 import Main from './views/Main'
 import Search from './views/Search'
 import UserP from './views/User'
 import BakeryDetail from './views/Bakery/Detail'
+import EduBot from 'views/EduBot'
 
 
 //          component: Application 컴포넌트          //
@@ -17,6 +18,7 @@ function App() {
   //  description: 검색 화면 : '/search/:word' - Search  //
   //  description: 유저 페이지  : '/user/:userEmail' - User //
   //  description: 빵집 상세보기 : '/bakery/detail/:boardNumber' - BoardDetail //
+  //  description: 상담 봇 레코더 : '/edubot/recoder' - Recoder //
   return (
     <Routes>
         <Route element={<Container />}>
@@ -26,6 +28,7 @@ function App() {
           <Route path={BAKERY_PATH()}>
             <Route path={BAKERY_DETAIL_PATH(':boardNumber')} element={ <BakeryDetail />}/> 
           </Route>
+          <Route path={EDUBOT_RECODER()} element={ <EduBot />} />
           <Route path= '*' element={<h1>404 Not Found</h1>} />
         </Route> 
         
