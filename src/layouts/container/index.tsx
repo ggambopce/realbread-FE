@@ -1,4 +1,6 @@
-import Footer from 'layouts/footer'
+import { AUTH_PATH } from 'app-constants';
+import Footer from '../footer';
+import Header from '../header';
 import { Outlet, useLocation } from 'react-router-dom'
 
 
@@ -11,6 +13,7 @@ export default function Container() {
     //          render: 레이아웃 렌더링            //
     return (
     <>
+        <Header />
         <Outlet />
         {pathname !== AUTH_PATH() && <Footer />}
     </>

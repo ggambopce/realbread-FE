@@ -1,12 +1,11 @@
-import Footer from './layouts/footer'
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
-import Container from 'layouts/container'
-import { AUTH_PATH, BAKERY_DETAIL_PATH, BAKERY_PATH, BAKERY_UPDATE_PATH, BAKERY_WRITE_PATH, MAIN_PATH, SEARCH_PATH, USER_PATH } from 'constants'
-import Main from 'views/Main'
-import Search from 'views/Search'
-import UserP from 'views/User'
-import BakeryDetail from 'views/Bakery/Detail'
+import Container from './layouts/container'
+import { BAKERY_DETAIL_PATH, BAKERY_PATH, MAIN_PATH, SEARCH_PATH, USER_PATH } from './app-constants/index'
+import Main from './views/Main'
+import Search from './views/Search'
+import UserP from './views/User'
+import BakeryDetail from './views/Bakery/Detail'
 
 
 //          component: Application 컴포넌트          //
