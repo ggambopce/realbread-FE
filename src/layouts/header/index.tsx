@@ -12,7 +12,7 @@ export default function index() {
                 <div className='icon-box'>
                     <div className='icon logo-edu-icon'></div>
                 </div>
-                <div className='header-logo'>{'JINOs Board'}</div>
+                <div className='header-logo'>{'Real Bread'}</div>
             </div>
             <div className='header-right-box'>
                 

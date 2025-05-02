@@ -2,6 +2,7 @@ import { AUTH_PATH } from 'app-constants';
 import Footer from '../footer';
 import Header from '../header';
 import { Outlet, useLocation } from 'react-router-dom'
+import './style.css'
 
 
 //          component: 레이아웃         //
@@ -12,10 +13,14 @@ export default function Container() {
   
     //          render: 레이아웃 렌더링            //
     return (
-    <>
-        <Header />
-        <Outlet />
-        {pathname !== AUTH_PATH() && <Footer />}
-    </>
+        <div className='layout-wrapper'>
+            <Header />
+            <div className='map-container'>
+                <Outlet />
+            </div>
+            
+            {pathname !== AUTH_PATH() && <Footer />}
+        </div>
+
   )
 }

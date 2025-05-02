@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      components: path.resolve(__dirname, 'src/components'),
       views: path.resolve(__dirname, 'src/views'),
       layouts: path.resolve(__dirname, 'src/layouts'),
       'app-constants': path.resolve(__dirname, 'src/app-constants') // <- 이 줄 중요

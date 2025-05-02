@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import bakeryMarker from '../assets/image/bakery-marker.png';
 
 const NaverMap = () => {
   const mapElement = useRef<HTMLDivElement | null>(null);
@@ -8,7 +9,7 @@ const NaverMap = () => {
 
     const mapOptions = {
       center: new window.naver.maps.LatLng(36.3504, 127.3845), // 대전 중심 좌표
-      zoom: 15,
+      zoom: 14,
     };
 
     const map = new window.naver.maps.Map(mapElement.current, mapOptions);
@@ -18,22 +19,132 @@ const NaverMap = () => {
     new window.naver.maps.Marker({
       position: new window.naver.maps.LatLng(36.3504, 127.3845),
       map,
+      icon: {
+        content: `
+          <div style="text-align: center;">
+            <img 
+              src="${bakeryMarker}" 
+              style="width: 30px; height: 30px; display: block; margin: 0 auto;" 
+            />
+            <div style="
+              margin-top: 4px;
+              font-size: 12px;
+              color: #333;
+              background: white;
+              padding: 2px 6px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              display: inline-block;
+              max-width: 80px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            ">
+              델빠네
+            </div>
+          </div>
+        `,
+        anchor: new window.naver.maps.Point(15, 40)
+      }
     });
 
     new window.naver.maps.Marker({
       position: new window.naver.maps.LatLng(36.3514570, 127.3949666),
       map,
+      icon: {
+        content: `
+          <div style="text-align: center;">
+            <img 
+              src="${bakeryMarker}" 
+              style="width: 30px; height: 30px; display: block; margin: 0 auto;" 
+            />
+            <div style="
+              margin-top: 4px;
+              font-size: 12px;
+              color: #333;
+              background: white;
+              padding: 2px 6px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              display: inline-block;
+              max-width: 80px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            ">
+              스위트하우스
+            </div>
+          </div>
+        `,
+        anchor: new window.naver.maps.Point(15, 40)
+      }
     });
 
     new window.naver.maps.Marker({
       position: new window.naver.maps.LatLng(36.3526021, 127.3805276),
       map,
+      icon: {
+        content: `
+          <div style="text-align: center;">
+            <img 
+              src="${bakeryMarker}" 
+              style="width: 30px; height: 30px; display: block; margin: 0 auto;" 
+            />
+            <div style="
+              margin-top: 4px;
+              font-size: 12px;
+              color: #333;
+              background: white;
+              padding: 2px 6px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              display: inline-block;
+              max-width: 80px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            ">
+              홍월당
+            </div>
+          </div>
+        `,
+        anchor: new window.naver.maps.Point(15, 40)
+      }
     });
+
 
     new window.naver.maps.Marker({
       position: new window.naver.maps.LatLng(36.3654352, 127.3810672),
       map,
+      icon: {
+        content: `
+          <div style="text-align: center;">
+            <img 
+              src="${bakeryMarker}" 
+              style="width: 30px; height: 30px; display: block; margin: 0 auto;" 
+            />
+            <div style="
+              margin-top: 4px;
+              font-size: 12px;
+              color: #333;
+              background: white;
+              padding: 2px 6px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              display: inline-block;
+              max-width: 80px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            ">
+              얼라잇케이크
+            </div>
+          </div>
+        `,
+        anchor: new window.naver.maps.Point(15, 40)
+      }
     });
+
 
     // 내 위치 마커 추가
     navigator.geolocation.getCurrentPosition(

@@ -1,0 +1,24 @@
+/* 전체 wrapper */
+.layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden; /* 외부 스크롤 방지 */
+  }
+  
+  /* 헤더, 푸터는 고정 높이 */
+  header {
+    height: 60px; /* 예시 */
+    flex-shrink: 0;
+  }
+  footer {
+    height: 80px; /* 예시 */
+    flex-shrink: 0;
+  }
+  
+  /* 지도는 나머지 공간 전체 차지 */
+  .map-container {
+    flex-grow: 1;
+    min-height: 0; /* Safari 대응 */
+  }
+  
