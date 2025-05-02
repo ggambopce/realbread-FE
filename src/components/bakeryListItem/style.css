@@ -1,20 +1,21 @@
-.backery-list-item {
+.bakery-list-item {
     padding: 24px;
 
     background-color: rgba(255, 255, 255, 1);
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 30px;
 
     cursor: pointer;
 }
 
-.backery-list-item:hover {
+.bakery-list-item:hover {
     background-color: rgba(0, 0, 0, 0.02);
 }
 
-.backery-list-item-main-box {
+.bakery-list-item-main-box {
     flex: 1;
 
     display: flex;
@@ -24,30 +25,36 @@
 
 .backery-list-item-top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 
     gap: 8px;
 }
-
-.backery-list-item-title {
+ 
+.bakery-list-item-title {
     color: rgba(0, 0, 0, 1);
 
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 140%;
 }
 
-.backery-list-item-middle {
+.bakery-list-item-middle {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.backery-list-item-bottom {
+.bakery-list-item-roadaddress {
+    font-size: 15px;
+    font-weight: 450;
+    line-height: 140%;
+}
+
+.bakery-list-item-bottom {
 
 }
 
-.backery-list-item-counts {
+.bakery-list-item-counts {
     color: rgba(0, 0, 0, 0.7);
 
     font-size: 12px;
@@ -56,18 +63,18 @@
 
 }
 
-.backery-list-item-image-box {
-    
-    width: 152px;
-    height: 152px;
+.bakery-list-item-image-box {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
 }
 
-.backery-list-item-image {
-    border-radius: 10px;
+.bakery-list-item-image {
+    
+    width: 80px;
+    height: 80px;
 
-    width: 100%;
-    height: 100%;
-
-    background-position: 50% 50%;
-    background-size: 100% 100%;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
 }

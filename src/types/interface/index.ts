@@ -1,11 +1,11 @@
-import BakeryListItemType from './bakery-list-item.interface';
-import CommentListItemType from './comment-list-item.interface';
-import FavoriteListItemType from './favorite-list-item.interface';
+import BakeryListItem from "./bakery-list-item.interface";
+import CommentListItem from "./comment-list-item.interface";
+import FavoriteListItem from "./favorite-list-item.interface";
 
 
 export type {
-    BakeryListItemType,
-    CommentListItemType,
-    FavoriteListItemType,
+    BakeryListItem,
+    CommentListItem,
+    FavoriteListItem,
     
 }

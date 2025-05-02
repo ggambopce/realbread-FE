@@ -1,3 +1,4 @@
+import BakeryListItem from "../components/bakeryListItem";
 import Header from "../components/Header"
 
 const BakeryListPage = () => {
@@ -5,7 +6,7 @@ const BakeryListPage = () => {
     return (
         <div>
             <Header />
-            
+            <BakeryListItem />
         </div>
     )
 }

@@ -2,7 +2,7 @@ import { Routes, Route} from 'react-router-dom';
 import './App.css'
 import MapPage from './views/MapPage';
 import NotFoundPage from './views/NotFoundPage';
-import BakeryListPage from 'views/BakeryListPage';
+import BakeryListPage from './views/BakeryListPage';
 
 function App() {
 
