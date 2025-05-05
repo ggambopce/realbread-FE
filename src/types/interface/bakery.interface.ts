@@ -6,5 +6,5 @@ export default interface Bakery {
     roadAddress: string;
     favoriteCount: number;
     commentCount: number;
-    munuList: MenuListItem[];
+    menuList: MenuListItem[];
 }
