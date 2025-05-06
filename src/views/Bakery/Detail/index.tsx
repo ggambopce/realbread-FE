@@ -37,7 +37,12 @@ export default function BakeryDetail() {
               </div>
             </div>
           </div>
-          <div className='bakery-detail-favorite-box'></div>
+          <div className='bakery-detail-favorite-box'>
+            <div className='bakery-detail-favorite-container'>
+              <div className='board-detail-bottom-favorite-title'>{'좋아요 '}<span className='emphasis'>{12}</span></div>
+              <div className='board-detail-bottom-favorite-contents'></div>
+            </div>
+          </div>
           <div className='bakery-detail-comment-box'></div>
           <div className='bakery-detail-menu-box'></div>
         </div>
