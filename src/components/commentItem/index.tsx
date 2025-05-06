@@ -10,7 +10,7 @@ interface Props {
 //          component: Comment List Item            //
 export default function CommentItem({ commentListItem }: Props) {
     //            state: properties          //
-    const { nickname, profileImage, writeDatetime, content } = commentListItem     
+    const { nickname, profileImage, writeDatetime, menu, content } = commentListItem     
 
     return (
         <div>
@@ -24,6 +24,7 @@ export default function CommentItem({ commentListItem }: Props) {
                     <div className='comment-list-item-time'>{writeDatetime}</div>
                 </div>
                 <div className='comment-list-item-main'>
+                    <div className='comment-list-item-menu'>{menu}</div>
                     <div className='comment-list-item-content'>{content}</div>
                 </div>
             </div>
