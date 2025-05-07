@@ -18,7 +18,6 @@ export default function Container() {
             <div className='map-container'>
                 <Outlet />
             </div>
-            
             {pathname !== AUTH_PATH() && <Footer />}
         </div>
 

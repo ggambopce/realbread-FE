@@ -18,7 +18,23 @@ export default function BakeryDetail() {
     const [commentList, setCommentList] = useState<CommentListItem[]>([]);
     //          state: 게시물 상태          //
     const [bakery, setBakery] = useState<Bakery | null>(null);
+    //          state: 추천 메뉴 선택 상태          //
+    const [selectedMenuName, setSelectedMenuName] = useState<string>('');
+    const menuNames = bakery?.menuList.map(menu => menu.menuName) ?? [];
+    //          state: 좋아요 상자 보기 상태          //
+    const [showFavorite, setShowFavorite] = useState<boolean>(false);
+    //          state: 댓글 상자 보기 상태          //
+    const [showComment, setShowComment] = useState<boolean>(false);
     
+    //          event handler: 좋아요 상자 보기 클릭 이벤트 처리           //
+    const onShowFavoriteClickHandler = () => {
+      setShowFavorite(!showFavorite);
+    }
+    //          event handler: 댓글 상자 보기 클릭 이벤트 처리           //
+    const onShowCommentClickHandler = () => {
+      setShowComment(!showComment);
+    }
+
     //          effect: 게시물 번호 path variable이 바뀔때 마다 좋아요 및 댓글 리스트 불러오기          //
     useEffect(() => {
       setFavoriteList(favoriteListMock);
@@ -44,8 +60,8 @@ export default function BakeryDetail() {
                 <div className='icon favorite-fill-icon'></div>
               </div>
               <div className='bakery-detail-button-text'>{`좋아요 ${5}`}</div>
-              <div className='icon-button'>
-                <div className='icon up-light-icon'></div>
+              <div className='icon-button' onClick={onShowFavoriteClickHandler}>
+                {showFavorite ? <div className='icon up-light-icon'></div> : <div className='icon down-light-icon'></div>}
               </div>
             </div>
             <div className='bakery-detail-button-group'>
@@ -53,11 +69,12 @@ export default function BakeryDetail() {
                 <div className='icon comment-icon'></div>
               </div>
               <div className='bakery-detail-button-text'>{`댓글 ${3}`}</div>
-              <div className='icon-button'>
-                <div className='icon up-light-icon'></div>
+              <div className='icon-button' onClick={onShowCommentClickHandler}>
+                {showComment ? <div className='icon up-light-icon'></div> : <div className='icon down-light-icon'></div>}
               </div>
             </div>
           </div>
+          {showFavorite &&
           <div className='bakery-detail-favorite-box'>
             <div className='bakery-detail-favorite-container'>
               <div className='bakery-detail-favorite-title'>{'좋아요 '}<span className='emphasis'>{12}</span></div>
@@ -66,6 +83,8 @@ export default function BakeryDetail() {
               </div>
             </div>
           </div>
+          }
+          {showComment &&
           <div className='bakery-detail-comment-box'>
             <div className='bakery-detail-comment-container'>
             <div className='bakery-detail-comment-title'>{'댓글 '}<span className='emphasis'>{12}</span></div>
@@ -76,7 +95,17 @@ export default function BakeryDetail() {
             <div className='bakery-detail-comment-pagination-box'>
               <Pagination />
             </div>
-            <div className='bakery-detail-comment-choice-menu-input-box'>{'메뉴선택버튼'}</div>
+            <div className="menu-choice-toggle-group">
+              {menuNames.map(name => (
+                <button
+                  key={name}
+                  className={`menu-toggle-button ${selectedMenuName === name ? 'selected' : ''}`}
+                  onClick={() => setSelectedMenuName(name)}
+                >
+                  {name}
+                </button>
+              ))}
+            </div>
             <div className='bakery-detail-comment-input-box'>
               <div className='bakery-detail-comment-input-container'>
                 <textarea  className='bakery-detail-comment-textarea' placeholder='댓글을 작성해주세요.'/>
@@ -87,7 +116,9 @@ export default function BakeryDetail() {
             </div>
             </div>
           </div>
+}
           <div className='bakery-detail-menu-box'>
+          <div className='divider'></div>
             {bakery?.menuList.map(menu => (
               <div className='bakery-detail-menu-item' key={menu.menuNumber}>
                 <div className='bakery-detail-menu-info'>
