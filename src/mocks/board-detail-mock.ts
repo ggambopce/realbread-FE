@@ -1,6 +1,5 @@
 import { Bakery } from "types/interface";
 
-
 const bakeryMock: Bakery = {
     bakeryNumber: 1,
     title: '그린베이커리',

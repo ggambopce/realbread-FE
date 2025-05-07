@@ -4,6 +4,14 @@
     "target": "ES2020",
     "useDefineForClassFields": true,
     "baseUrl": "./src",
+    "paths": {
+      "components/*": ["components/*"],
+      "mocks/*": ["mocks/*"],
+      "stores/*": ["stores/*"],
+      "assets/*": ["assets/*"],
+      "views/*": ["views/*"],
+      "types/*": ["types/*"]
+    },
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
