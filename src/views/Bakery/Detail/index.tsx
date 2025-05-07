@@ -60,8 +60,8 @@ export default function BakeryDetail() {
           </div>
           <div className='bakery-detail-favorite-box'>
             <div className='bakery-detail-favorite-container'>
-              <div className='board-detail-favorite-title'>{'좋아요 '}<span className='emphasis'>{12}</span></div>
-              <div className='board-detail-favorite-contents'>
+              <div className='bakery-detail-favorite-title'>{'좋아요 '}<span className='emphasis'>{12}</span></div>
+              <div className='bakery-detail-favorite-contents'>
               {favoriteList.map(item => <FavoriteItem favoriteListItem={item} />)}
               </div>
             </div>

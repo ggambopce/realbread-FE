@@ -50,15 +50,12 @@
 
 }
 
-.comment-list-item-main{
-
-}
-
-.comment-list-item-menu-box {
+.comment-list-item-choice-menu-box {
     display: flex;
     align-items: center;
     gap: 3px;
     padding: 5px;
+    margin-left: auto;
 }
 
 .comment-list-item-choice-menu-image {
@@ -73,8 +70,8 @@
 .comment-list-item-menu {
     color: rgba(0, 0, 0, 0.7);
 
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
     line-height: 150%;
 }
 

@@ -24,14 +24,13 @@ export default function CommentItem({ commentListItem }: Props) {
                     <div className='comment-list-item-nickname'>{nickname}</div>
                     <div className='comment-list-item-divider'>{'|'}</div>
                     <div className='comment-list-item-time'>{writeDatetime}</div>
-                </div>
-                <div className='comment-list-item-main'>
-                    <div className='comment-list-item-menu-box'>
+                    <div className='comment-list-item-choice-menu-box'>
                         <div className='comment-list-item-choice-menu-image' style={{ backgroundImage: `url(${choiceMenuImage})` }}></div>
                         <div className='comment-list-item-menu'>{menu}</div>
                     </div>
-                    <div className='comment-list-item-content'>{content}</div>
                 </div>
+                
+                <div className='comment-list-item-content'>{content}</div>
             </div>
         </div>
     )
