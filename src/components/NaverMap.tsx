@@ -32,6 +32,8 @@ const NaverMap = () => {
     const mapOptions = {
       center: new window.naver.maps.LatLng(36.3504, 127.3845), // 대전 중심 좌표
       zoom: 14,
+      logoControl: false,
+      mapDataControl: false
     };
 
     const map = new window.naver.maps.Map(mapElement.current, mapOptions);

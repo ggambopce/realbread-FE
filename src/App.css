@@ -206,3 +206,7 @@
 .comment-icon {
   background-image: url(assets/image/chat-light.png);
 }
+
+.kakao-login-button {
+  background-image: url(assets/image/kakao-login-button.png);
+}
