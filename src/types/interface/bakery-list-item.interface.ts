@@ -3,7 +3,6 @@ export default interface BakeryListItem {
     title: string;
     address: string;
     roadAddress: string;
-    imageUrl: string;
     commentCount: number;
     favoriteCount: number;
 

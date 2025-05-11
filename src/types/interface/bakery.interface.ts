@@ -8,3 +8,5 @@ export default interface Bakery {
     commentCount: number;
     menuList: MenuListItem[];
 }
+
+
