@@ -19,6 +19,7 @@
   /* 지도는 나머지 공간 전체 차지 */
   .map-container {
     flex-grow: 1;
-    min-height: 0; /* Safari 대응 */
+    height: 100%;
+    overflow: hidden;
   }
   

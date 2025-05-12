@@ -1,5 +1,6 @@
+import Header from "layouts/header"
 import NaverMap from "../components/NaverMap"
-import Header from "../components/Header"
+
 
 const MapPage = () => {
 
