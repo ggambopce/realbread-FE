@@ -1,6 +1,6 @@
-import { useNavigate, useParams, KeyboardEvent } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './style.css'
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState, KeyboardEvent } from 'react'
 import { SEARCH_PATH } from 'app-constants';
 
 export default function SearchButton() {
@@ -54,8 +54,8 @@ export default function SearchButton() {
     );
     //          render: 검색 버튼 컴포넌트 랜더링 (클릭 true 상태)           //
     return (
-        <div className='header-search-input-box'>
-            <input className='header-search-input' type='text' placeholder='검색어를 입력해주세요.' value={word} onChange={onSearchWordChangeHandler} onKeyDown={onSearchWordKeyDownHandler} />
+        <div className='search-input-box'>
+            <input className='search-input' type='text' placeholder='검색어를 입력해주세요.' value={word} onChange={onSearchWordChangeHandler} onKeyDown={onSearchWordKeyDownHandler} />
             <div ref={searchButtonRef} className='icon-button' onClick={onSearchButtonClickHandler}>
                 <div className='icon search-light-icon'></div>
             </div>
