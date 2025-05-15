@@ -214,3 +214,11 @@
 .search-light-icon {
     background-image: url(assets/image/search-light.png);
 }
+
+.close-icon {
+    background-image: url(assets/image/close.png);
+}
+
+.more-icon {
+    background-image: url(assets/image/more.png);
+}

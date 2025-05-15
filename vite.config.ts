@@ -19,5 +19,13 @@ export default defineConfig({
       apis: path.resolve(__dirname, 'src/apis'),
       constants: path.resolve(__dirname, 'src/constants'), 
     }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080', // Spring Boot 서버 주소
+        changeOrigin: true
+      }
+    }
   }
 })

@@ -5,7 +5,7 @@ import { BAKERY_DETAIL_PATH, BAKERY_PATH, EDUBOT_RECODER, MAIN_PATH, SEARCH_PATH
 import Main from './views/Main'
 import Search from './views/Search'
 import UserP from './views/User'
-import BakeryDetail from './views/Bakery/Detail'
+import BakeryDetail from './views/Bakery'
 import EduBot from 'views/EduBot'
 
 

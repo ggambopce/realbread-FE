@@ -45,13 +45,6 @@ export default function SearchButton() {
         }
     }, [searchWord])
     
-    if (!status)
-    //          render: 검색 버튼 컴포넌트 랜더링 (클릭 false 상태)           //
-    return (
-        <div className='icon-button' onClick={onSearchButtonClickHandler}>
-            <div className='icon search-light-icon'></div>
-        </div>
-    );
     //          render: 검색 버튼 컴포넌트 랜더링 (클릭 true 상태)           //
     return (
         <div className='search-input-box'>
