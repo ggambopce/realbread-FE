@@ -1,4 +1,4 @@
-import MenuListItem from "./menu-list-item.interface";
+import MenuDetailListItem from "./menu-list-item.interface";
 
 export default interface Bakery {
     bakeryNumber: number;
@@ -6,7 +6,7 @@ export default interface Bakery {
     roadAddress: string;
     favoriteCount: number;
     commentCount: number;
-    menuList: MenuListItem[];
+    menuList: MenuDetailListItem[];
 }
 
 

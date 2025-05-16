@@ -3,21 +3,22 @@ import './style.css'
 import FavoriteItem from 'components/favoriteItem'
 import { Bakery, CommentListItem, FavoriteListItem } from 'types/interface'
 import favoriteListMock from 'mocks/favorite-list.mock';
-import { bakeryMock, commentListMock } from 'mocks';
+import { commentListMock } from 'mocks';
 import CommentItem from 'components/commentItem';
 import Pagination from 'components/pagination';
 
-
+interface Props {
+  bakery: Bakery;
+  onClose: () => void;
+}
 
 //          component: 게시물 상세 화면 컴포넌트           //
-export default function BakeryDetail() {
+export default function BakeryDetail({bakery, onClose}: Props) {
   
     //          state: 좋아요 리스트 상태          //
     const [favoriteList, setFavoriteList] = useState<FavoriteListItem[]>([]);
     //          state: 댓글 리스트 상태(임시)          //
     const [commentList, setCommentList] = useState<CommentListItem[]>([]);
-    //          state: 게시물 상태          //
-    const [bakery, setBakery] = useState<Bakery | null>(null);
     //          state: 추천 메뉴 선택 상태          //
     const [selectedMenuName, setSelectedMenuName] = useState<string>('');
     const menuNames = bakery?.menuList.map(menu => menu.menuName) ?? [];
@@ -35,11 +36,16 @@ export default function BakeryDetail() {
       setShowComment(!showComment);
     }
 
+    //          event handler: 닫기 버튼 클릭 이벤트 처리           //
+    const onCloseButtonClickHandler = () => {
+        
+      onClose();
+    }
+
     //          effect: 게시물 번호 path variable이 바뀔때 마다 좋아요 및 댓글 리스트 불러오기          //
     useEffect(() => {
       setFavoriteList(favoriteListMock);
       setCommentList(commentListMock);
-      setBakery(bakeryMock);
     }, []);
 
     //          render: 게시물 상세 화면 컴포넌트 렌더링           //
@@ -49,7 +55,7 @@ export default function BakeryDetail() {
           <div className='bakery-detail-top'>
             <div className='bakery-detail-top-title-box'>
               <div className='bakery-detail-top-title'>{bakery?.title}</div>
-              <div className='icon-button'>
+              <div className='icon-button' onClick={onCloseButtonClickHandler}>
                 <div className='icon close-icon'></div>
                 </div>
             </div>

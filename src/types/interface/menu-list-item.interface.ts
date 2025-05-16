@@ -1,4 +1,4 @@
-export default interface MenuListItem {
+export default interface MenuDetailListItem {
     menuNumber: number;
     menuName: string;
     price: string;
