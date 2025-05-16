@@ -32,7 +32,7 @@ const bakeryMainListMock:  BakeryMainList= {
             ]
         },
         {
-            bakeryNumber: 1,
+            bakeryNumber: 2,
             title: "그린베이커리",
             roadAddress: "대전광역시 유성구 테크노4로 80-7 1층 101호",
             favoriteCount: 0,
@@ -60,7 +60,7 @@ const bakeryMainListMock:  BakeryMainList= {
             ]
         },
         {
-            bakeryNumber: 1,
+            bakeryNumber: 3,
             title: "그린베이커리",
             roadAddress: "대전광역시 유성구 테크노4로 80-7 1층 101호",
             favoriteCount: 0,
@@ -88,7 +88,7 @@ const bakeryMainListMock:  BakeryMainList= {
             ]
         },
         {
-            bakeryNumber: 1,
+            bakeryNumber: 4,
             title: "그린베이커리",
             roadAddress: "대전광역시 유성구 테크노4로 80-7 1층 101호",
             favoriteCount: 0,

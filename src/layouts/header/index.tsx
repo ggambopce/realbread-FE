@@ -1,14 +1,11 @@
 import './style.css'
-import { useNavigate } from 'react-router-dom';
 import { SNS_SIGN_IN_URL } from 'apis';
 import kakaoLoginButton from 'assets/image/kakao-login-button.png'
 
 //          component: Header 레이아웃          //
 export default function Header() {
 
-  //          function: 네비게이트 함수           //
-  const navigator = useNavigate();
-
+ 
   //          component: 마이페이지 버튼 컴포넌트          //
   const MyPageButton = () => {
 

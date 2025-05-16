@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import './style.css';
 
 //          interface: 페이지네이션 컴포넌트 Properties          //
