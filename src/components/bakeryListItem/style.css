@@ -1,14 +1,10 @@
 .bakery-list-item {
-    padding: 24px;
+    padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-    background-color: rgba(255, 255, 255, 1);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .bakery-list-item:hover {
@@ -16,18 +12,13 @@
 }
 
 .bakery-list-item-main-box {
-    flex: 1;
-
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+   
 }
 
 .backery-list-item-top {
     display: flex;
-    align-items: flex-start;
-
-    gap: 8px;
+    flex-direction: column;
+    gap: 10px;
 }
  
 .bakery-list-item-title {
@@ -36,21 +27,26 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 140%;
+
+    cursor: pointer;
 }
 
 .bakery-list-item-middle {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
 }
 
 .bakery-list-item-roadaddress {
     font-size: 15px;
     font-weight: 450;
     line-height: 140%;
+
+    cursor: pointer;
 }
 
-.bakery-list-item-bottom {
+.bakery-list-item-link {
+    cursor: pointer;
 
 }
 

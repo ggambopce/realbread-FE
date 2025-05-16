@@ -49,10 +49,12 @@ export default function BakeryDetail() {
           <div className='bakery-detail-top'>
             <div className='bakery-detail-top-title-box'>
               <div className='bakery-detail-top-title'>{bakery?.title}</div>
-              <div className='bakery-detail-top-road-address'>{bakery?.roadAddress}</div>
+              <div className='icon-button'>
+                <div className='icon close-icon'></div>
+                </div>
             </div>
-            <div className=''></div>
-            <div></div>
+            <div className='bakery-detail-top-road-address'>{bakery?.roadAddress}</div>
+            
           </div>
           <div className='bakery-detail-button-box'>
             <div className='bakery-detail-button-group'>
