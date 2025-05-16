@@ -33,14 +33,14 @@ const useBakeryStore = create<BakeryStore>(set => ({
     commentCount: 0,
     menuList: [],
     
-    setTitle: (title) => set({ title }),
-    setRoadAddress: (roadAddress) => set({ roadAddress }),
-    setLink: (link) => set({ link }),
-    setMenuList: (menuList) => set({ menuList }),
-    setFavoriteCount: (count) => set({ favoriteCount: count }),
-    setCommentCount: (count) => set({ commentCount: count }),
-    setCoordinates: (mapx, mapy) => set({ mapx, mapy }),
-    setBakery: (bakery) => set({ ...bakery }),
+    setTitle: (title) => set(state => ({...state, title })),
+    setRoadAddress: (roadAddress) => set((state) => ({ ...state, roadAddress })),
+    setLink: (link) => set((state) => ({ ...state, link })),
+    setMenuList: (menuList) => set((state) => ({ ...state, menuList })),
+    setFavoriteCount: (count) => set((state) => ({ ...state, favoriteCount: count })),
+    setCommentCount: (count) => set((state) => ({ ...state, commentCount: count })),
+    setCoordinates: (mapx, mapy) => set((state) => ({ ...state, mapx, mapy })),
+    setBakery: (bakery) => set((state) => ({ ...state, ...bakery })),
     resetBakery: () =>
         set({
         bakeryNumber: 0,

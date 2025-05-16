@@ -3,11 +3,10 @@ import './style.css';
 
 interface Props {
     bakeryListItem: BakerySummary;
-    onSelect: (bakery: BakerySummary) => void;
 }
 
 //          component: 메인화면 빵집 리스트 컴포넌트            //
-export default function BakeryListItem({ bakeryListItem, onSelect }: Props) {
+export default function BakeryListItem({ bakeryListItem,  }: Props) {
 
     //            state: properties            //
     const { title, roadAddress, link} = bakeryListItem;
@@ -18,7 +17,7 @@ export default function BakeryListItem({ bakeryListItem, onSelect }: Props) {
     //          event handler: 빵집 제목 클릭 이벤트 처리 함수          //
     const onTitleClickHandler = () => {
         // 해당 bakeryNumber 빵집 상세 panel 열기
-        onSelect(bakeryListItem);
+
     }
     //          event handler: 도로명 주소 클릭 이벤트 처리 함수          //
     const onRoadAddressClickHandler = () => {
