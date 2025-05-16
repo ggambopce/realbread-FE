@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
 import axios from "axios";
+import './style.css'
 
 export default function Recorder() {
   const [recording, setRecording] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [emotion, setEmotion] = useState<string | null>(null);
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
@@ -33,6 +35,9 @@ export default function Recorder() {
         const response = await axios.post('/api/edu-bot/counsel', formData, {
           responseType: 'blob',
         });
+
+        const emotionHeader = response.headers['emotion']; // 감정 정보 추출
+        setEmotion(emotionHeader); // 상태 저장
 
         const responseBlob = new Blob([response.data], { type: 'audio/mpeg' });
         const audioURL = URL.createObjectURL(responseBlob);
@@ -67,6 +72,14 @@ export default function Recorder() {
         <div style={{ marginTop: "20px" }}>
           <p>상담 응답 오디오</p>
           <audio controls src={audioUrl} />
+          
+          {/* 🆕 감정 이미지 렌더링 */}
+          {emotion && (
+            <div style={{ marginTop: "10px" }}>
+              <p>감정: {emotion}</p>
+              <div className={`emotion-icon ${emotion}`} />
+            </div>
+          )}
         </div>
       )}
     </div>

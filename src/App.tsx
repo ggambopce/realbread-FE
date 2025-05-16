@@ -7,7 +7,6 @@ import Search from './views/Search'
 import UserP from './views/User'
 import EduBot from 'views/EduBot'
 import OAuth from 'views/Authentication/OAuth'
-import { CookiesProvider } from 'react-cookie';
 
 
 //          component: Application 컴포넌트          //
