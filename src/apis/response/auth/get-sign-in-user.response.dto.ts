@@ -1,7 +1,7 @@
-export interface GetSignInUserResponseDto {
-    userId: number;
-    email: string;
-    nickname: string;
-    profileImage: string | null;
-    role: string;
+
+import User from 'types/interface/user.interface';
+import ResponseDto from '../response.dto';
+
+export default interface GetSignInUserResponseDto extends ResponseDto, User{
+    
 }

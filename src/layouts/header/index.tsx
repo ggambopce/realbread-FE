@@ -22,7 +22,6 @@ export default function Header() {
   const [isAuthPage, setAuthPage] = useState<boolean>(false);
   //          state: 메인 페이지 상태          //
   const [isMainPage, setMainPage] = useState<boolean>(false);
-  
   //          state: 유저 페이지 상태          //
   const [isUserPage, setUserPage] = useState<boolean>(false);  
 
@@ -59,7 +58,7 @@ export default function Header() {
     };
 
     //          render: 로그아웃 버튼 컴포넌트 렌더링         //
-    if (isLogin && userId === loginUser?.userId)
+    if (isLogin && userId === loginUser?.userId.toString())
     return <div className='white-button' onClick={onSignOutButtonClickHandler}>{'로그아웃'}</div>;
     //          render: 마이페이지 버튼 컴포넌트 렌더링         //
     if (isLogin)

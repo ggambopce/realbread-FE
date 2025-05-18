@@ -12,9 +12,9 @@ import { useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 import { useLoginUserStore } from './stores'
 import { GetSignInUserResponseDto } from 'apis/response/auth'
-import { ResponseDto } from 'apis/response'
 import User from 'types/interface/user.interface'
 import { getSignInUserRequest } from 'apis'
+import ResponseDto from 'apis/response/response.dto'
 
 //          component: Application 컴포넌트          //
 function App() {
@@ -53,7 +53,7 @@ function App() {
     <Routes>
         <Route element={<Container />}>
           <Route path={MAIN_PATH()} element={ <Main /> } />
-          <Route path={USER_PATH(':userEmail')} element={ <UserP />}/>
+          <Route path={USER_PATH(':userId')} element={ <UserP />}/>
           <Route path='/auth/oauth-response/:token/:expirationTime' element= {<OAuth/>} />
           <Route path={EDUBOT_RECODER()} element={ <EduBot />} />
           <Route path= '*' element={<h1>404 Not Found</h1>} />
