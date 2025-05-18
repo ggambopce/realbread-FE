@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import './style.css'
 import { ChangeEvent, useEffect, useRef, useState, KeyboardEvent } from 'react'
-import { SEARCH_PATH } from 'app-constants';
 
 export default function SearchButton() {
   
@@ -34,7 +33,6 @@ export default function SearchButton() {
             setStatus(!status);
             return;
         }
-        navigator(SEARCH_PATH(word));
     }
 
     //          effect: 검색어 path variable 변경될 때마다 실행된 함수         //

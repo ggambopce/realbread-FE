@@ -1,4 +1,4 @@
-export default interface User {
+export interface GetSignInUserResponseDto {
     userId: number;
     email: string;
     nickname: string;
