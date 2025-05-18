@@ -5,12 +5,20 @@ import bakeryMainListMock from 'mocks/board-main-list-mock'
 import BakeryDetail from 'views/Bakery'
 import SearchButton from 'components/searchBox'
 import BakeryListItem from 'components/bakeryListItem'
-import { BakerySummary } from 'types/interface/bakery-main-list.interface'
+import { BakeryMainList, BakerySummary } from 'types/interface/bakery-main-list.interface'
 import bakeryMock from 'mocks/board-detail-mock'
 import { Bakery } from 'types/interface'
+import Pagination from 'components/pagination'
+import { usePagination } from 'hooks'
 
 //          component: 메인 화면 컴포넌트           //
 export default function Main() {
+
+  //          state: 페이지네이션 관련 상태           //
+    const {
+      currentPage, currentSection, viewList, viewPageList, totalSection,
+      setCurrentPage, setCurrentSection, setTotalList,
+    } = usePagination<BakeryMainList>(10);
 
   //          state: 선택된 빵집 상태          //
   const [selectedBakery, setSelectedBakery] = useState<BakerySummary | null>(null);
@@ -48,9 +56,19 @@ export default function Main() {
             <BakeryListItem
               key={bakery.bakeryNumber}
               bakeryListItem={bakery}
-              onSelect={setSelectedBakery}
             />
           ))}
+          <div className='bakery-list-pagination-box'>
+            <Pagination
+              currentPage={currentPage}
+              currentSection={currentSection}
+              setCurrentPage={setCurrentPage}
+              setCurrentSection={setCurrentSection}
+              viewPageList={viewPageList}
+              totalSection={totalSection}
+
+            />
+          </div>
         </div>
       </div>
       <div className="main-map">
