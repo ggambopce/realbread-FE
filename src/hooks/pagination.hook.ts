@@ -27,20 +27,24 @@ const usePagination = <T>(countPerPage: number) => {
     }
     //          function: 보여줄 페이지리스트 추출 함수          //
     const setViewPage = () => {
-        const FIRST_INDEX = 10 * (currentSection - 1);
-        const LAST_INDEX = totalPageList.length > 10 * currentSection ? 10 * currentSection : totalPageList.length;
+        const PAGES_PER_SECTION = 5;
+
+        const FIRST_INDEX = PAGES_PER_SECTION * (currentSection - 1);
+        const LAST_INDEX = Math.min(totalPageList.length, PAGES_PER_SECTION * currentSection);
         const viewPageList = totalPageList.slice(FIRST_INDEX, LAST_INDEX);
         setViewPageList(viewPageList);
     };
 
     //          effect: total list가 변경될 때마다 진행할 작업          //
     useEffect(() => {
+        const PAGES_PER_SECTION = 5;
+
         const totalPage = Math.ceil(totalList.length / countPerPage);
         const totalPageList: number[] = [] ;
         for (let page = 1; page <= totalPage; page++) totalPageList.push(page);
         setTotalPageList(totalPageList);
         
-        const totalSection = Math.ceil(totalList.length / (countPerPage * 10));
+        const totalSection = Math.ceil(totalList.length / (countPerPage * PAGES_PER_SECTION));
         setTotalSection(totalSection);
 
         setCurrentPage(1);

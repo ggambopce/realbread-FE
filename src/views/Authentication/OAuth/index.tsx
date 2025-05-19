@@ -18,12 +18,19 @@ export default function OAuth() {
     const now = (new Date().getTime());
     const expires = new Date(now + Number(expirationTime));
 
-    setCookie('accessToken', token, {expires, path: "/"});
+    const isProd = process.env.NODE_ENV === 'production';
+
+    setCookie('accessToken', token, {
+      expires, 
+      path: "/",
+      secure: isProd,
+    sameSite: isProd ? 'none' : 'lax',
+    });
 
     getSignInUserRequest(token)
       .then(response => {
-        const { userId, nickname, profileImage } = response.data;
-        setLoginUser({ userId, nickname, profileImage });
+        const { userId, email, nickname, profileImage, role } = response;
+        setLoginUser({ userId, email, nickname, profileImage, role });
         navigator('/');
       })
       .catch(() => {

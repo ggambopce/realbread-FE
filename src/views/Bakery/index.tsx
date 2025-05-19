@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
 import FavoriteItem from 'components/favoriteItem'
-import { Bakery, CommentListItem, FavoriteListItem } from 'types/interface'
+import { CommentListItem, FavoriteListItem } from 'types/interface'
 import favoriteListMock from 'mocks/favorite-list.mock';
 import { commentListMock } from 'mocks';
 import CommentItem from 'components/commentItem';
 import Pagination from 'components/pagination';
 
-interface Props {
-  bakery: Bakery;
-  onClose: () => void;
-}
 
 //          component: 게시물 상세 화면 컴포넌트           //
 export default function BakeryDetail({bakery, onClose}: Props) {
@@ -21,7 +17,6 @@ export default function BakeryDetail({bakery, onClose}: Props) {
     const [commentList, setCommentList] = useState<CommentListItem[]>([]);
     //          state: 추천 메뉴 선택 상태          //
     const [selectedMenuName, setSelectedMenuName] = useState<string>('');
-    const menuNames = bakery?.menuList.map(menu => menu.menuName) ?? [];
     //          state: 좋아요 상자 보기 상태          //
     const [showFavorite, setShowFavorite] = useState<boolean>(false);
     //          state: 댓글 상자 보기 상태          //

@@ -1,5 +1,7 @@
 import axios from "axios";
 import { GetSignInUserResponseDto } from "./response/auth";
+import { GetBakeryMainListResponseDto } from "./response/bakery";
+import { ResponseDto } from "./response";
 
 const DOMAIN = 'http://localhost:8080';
 
@@ -17,3 +19,19 @@ export const getSignInUserRequest = async (token: string): Promise<GetSignInUser
   });
   return response.data;
 };
+
+const GET_BAKERY_MAIN_LIST_URL = () => `${API_DOMAIN}/bakery/main-list`
+
+export const getBakeryMainListRequest = async () => {
+  const result = await axios.get(GET_BAKERY_MAIN_LIST_URL())
+    .then(response => {
+      const responseBody: GetBakeryMainListResponseDto = response.data;
+      return responseBody;
+    })  
+    .catch(error => {
+            if (!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        });
+    return result;
+}
