@@ -13,11 +13,13 @@ export default function Recorder() {
   const startRecording = async () => {
     if (recording) return; // 이미 녹음 중이면 중단
 
+    
+
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     const mediaRecorder = new MediaRecorder(stream);
 
     audioChunksRef.current = []; // 시작할 때 초기화
-
+    
 
     mediaRecorder.ondataavailable = (e) => {
       if (e.data.size > 0) {
@@ -82,6 +84,13 @@ export default function Recorder() {
           )}
         </div>
       )}
+
+      
+      <div id='main-counselbot-wrapper'>
+        
+      </div>
+     
     </div>
+    
   );
 }

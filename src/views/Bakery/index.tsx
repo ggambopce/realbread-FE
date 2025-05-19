@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import './style.css'
 import FavoriteItem from 'components/favoriteItem'
 import { CommentListItem, FavoriteListItem } from 'types/interface'
@@ -151,6 +151,12 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
         onClose();
     }
 
+    //          effect: 게시물 번호 path variable이 바뀔때 마다 좋아요 및 댓글 리스트 불러오기          //
+    useEffect(() => {
+      if (!bakery.bakeryNumber) return;
+      getFavoriteListRequest(bakery.bakeryNumber).then(getFavoriteListResponse);
+      getCommentListRequest(bakery.bakeryNumber).then(getCommentListResponse);
+    }, [bakery.bakeryNumber]);
 
 
     //          render: 게시물 상세 화면 컴포넌트 렌더링           //
