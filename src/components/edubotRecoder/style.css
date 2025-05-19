@@ -1,3 +1,57 @@
+/* 상태 텍스트 */
+.recorder-status-text {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333;
+}
+
+/* 버튼 애니메이션: 녹음 중 */
+.emotion-button.recording {
+  animation: pulse 1s infinite ease-in-out;
+  border: 2px solid #2196f3;
+}
+
+/* 버튼 애니메이션: 응답 중 */
+.emotion-button.processing {
+  animation: rotate 1s linear infinite;
+  border: 2px dashed #4caf50;
+}
+
+/* 기본 버튼 스타일 */
+.emotion-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+/* 아이콘 기본 */
+.emotion-icon {
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+/* 녹음 중: 파동 */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* 응답 중: 회전 */
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 .emotion-icon {
   width: 100px;
   height: 100px;
