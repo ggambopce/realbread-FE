@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import './style.css'
 import FavoriteItem from 'components/favoriteItem'
 import { CommentListItem, FavoriteListItem } from 'types/interface'
@@ -10,7 +10,9 @@ import { ResponseDto } from 'apis/response';
 import useLoginUserStore from 'stores/login-user.store';
 import { useCookies } from 'react-cookie';
 import { usePagination } from 'hooks';
-import { getFavoriteListRequest, putFavoriteRequest } from 'apis';
+import { getCommentListRequest, getFavoriteListRequest, postCommentRequest, putFavoriteRequest } from 'apis';
+import { GetCommentListResponseDto, PostCommentResponseDto } from 'apis/response/comment';
+import { PostCommentRequestDto } from 'apis/request/comment';
 
 interface Props {
   bakery: BakeryDetailItem;
@@ -37,6 +39,8 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
     const [showFavorite, setShowFavorite] = useState<boolean>(false);
     //          state: 댓글 상자 보기 상태          //
     const [showComment, setShowComment] = useState<boolean>(false);
+    //          state: 댓글 textarea 참조 상태           //
+    const commentRef = useRef<HTMLTextAreaElement | null>(null);
     //          state: 댓글 상태          //
     const [comment, setComment] = useState<string>('');
     //          state: 전체 댓글 개수 상태          //
@@ -83,6 +87,35 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
       getFavoriteListRequest(bakery.bakeryNumber).then(getFavoriteListResponse);
     }
 
+    //          function: get comment list response 처리 함수          //
+    const getCommentListResponse = (responseBody: GetCommentListResponseDto | ResponseDto | null) => {
+      if (!responseBody) return;
+      const { code } = responseBody;
+      if (code === 'NB') alert('존재하지 않는 게시물 입니다.');
+      if (code === 'DBE') alert('데이터베이스 오류입니다.')
+      if (code !== 'SU') return;
+
+      const { commentList } = responseBody as GetCommentListResponseDto;
+      setTotalList(commentList);
+      setTotalCommnetCount(commentList.length);
+    }
+
+    //          function: post comment response 처리 함수          //
+    const postCommentResponse  = (responseBody: PostCommentResponseDto | ResponseDto | null) => {
+      if (!responseBody) return;
+      const { code } = responseBody;
+      if (code === 'VF') alert('잘못된 접근입니다.')
+      if (code === 'NU') alert('존재하지 않는 유저입니다.');
+      if (code === 'NB') alert('존재하지 않는 게시물입니다.');
+      if (code === 'AF') alert('인증에 실패했습니다.')
+      if (code === 'DBE') alert('데이터베이스 오류입니다.')
+      if (code !== 'SU') return;
+
+      if (!bakery.bakeryNumber) return;
+      getCommentListRequest(bakery.bakeryNumber).then(getCommentListResponse);
+
+    }
+
     //          event handler: 좋아요 클릭 이벤트 처리           //
     const onFavoriteClickHandler = () => {
       if (!loginUser || !cookies.accessToken || !bakery.bakeryNumber) return;
@@ -97,11 +130,28 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
     const onShowCommentClickHandler = () => {
       setShowComment(!showComment);
     }
+    //          event handler: 댓글 작성 버튼 클릭 이벤트 처리           //
+    const onCommentSubmitButtonClickHandler = () => {
+      if (!comment || !bakery.bakeryNumber || !loginUser || !cookies.accessToken) return;
+      const requestBody: PostCommentRequestDto = { content: comment};
+      postCommentRequest(bakery.bakeryNumber, requestBody, cookies.accessToken).then(postCommentResponse);
+    }
+    //          event handler: 댓글 변경 이벤트 처리           //
+    const onCommentChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+      const { value } = event.target;
+      setComment(value);
+      if (!commentRef.current) return;
+      commentRef.current.style.height = 'auto';
+      commentRef.current.style.height = `${commentRef.current.scrollHeight}px`;
+
+    }
 
     //          event handler: 닫기 버튼 클릭 이벤트 처리           //
     const onCloseButtonClickHandler = () => {
         onClose();
     }
+
+
 
     //          render: 게시물 상세 화면 컴포넌트 렌더링           //
     if (!bakery) return <></>
@@ -180,14 +230,16 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
                 </button>
               ))}
             </div>
+            {loginUser !== null && 
             <div className='bakery-detail-comment-input-box'>
               <div className='bakery-detail-comment-input-container'>
-                <textarea  className='bakery-detail-comment-textarea' placeholder='추천 메뉴와 리뷰를 작성해주세요.'/>
+                <textarea  className='bakery-detail-comment-textarea' placeholder='추천 메뉴와 리뷰를 작성해주세요.' value={comment} onChange={onCommentChangeHandler}/>
                 <div className='bakery-detail-comment-button-box'>
-                  <div className= 'disable-button'>{'댓글달기'}</div>
+                  <div className= {comment === '' ? 'disable-button' : 'black-button'} onClick={onCommentSubmitButtonClickHandler}>{'댓글달기'}</div>
                 </div>
               </div>
             </div>
+            }
             </div>
           </div>
 }

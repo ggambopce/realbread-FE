@@ -15,7 +15,7 @@ interface Props {
 //          component: Comment List Item 컴포넌트            //
 export default function CommentItem({ commentListItem }: Props) {
     //            state: properties          //
-    const { nickname, profileImage, menu, content } = commentListItem
+    const { nickname, profileImage, choiceMenu, content } = commentListItem
     
     //          state: 작성자 여부 상태          //
     const [isWriter, setWriter] = useState<boolean>(true);
@@ -78,7 +78,7 @@ export default function CommentItem({ commentListItem }: Props) {
                     }  
                     <div className='comment-list-item-choice-menu-box'>
                         <div className='comment-list-item-choice-menu-image' style={{ backgroundImage: `url(${choiceMenuImage})` }}></div>
-                        <div className='comment-list-item-menu'>{menu}</div>
+                        <div className='comment-list-item-menu'>{choiceMenu}</div>
                     </div>
                 </div>
                 
