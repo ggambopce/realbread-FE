@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './style.css'
 import FavoriteItem from 'components/favoriteItem'
 import { CommentListItem, FavoriteListItem } from 'types/interface'
-import favoriteListMock from 'mocks/favorite-list.mock';
-import { commentListMock } from 'mocks';
 import CommentItem from 'components/commentItem';
 import Pagination from 'components/pagination';
+import BakeryDetailItem from 'types/interface/bakery-detail-item.interface';
 
+interface Props {
+  bakery: BakeryDetailItem;
+  onClose: () => void;
+}
 
-//          component: 게시물 상세 화면 컴포넌트           //
-export default function BakeryDetail({bakery, onClose}: Props) {
-  
+//          component: 게시물 상세 패널 컴포넌트           //
+export default function BakeryDetail({ bakery, onClose }: Props) {
+
     //          state: 좋아요 리스트 상태          //
     const [favoriteList, setFavoriteList] = useState<FavoriteListItem[]>([]);
     //          state: 댓글 리스트 상태(임시)          //
@@ -33,28 +36,22 @@ export default function BakeryDetail({bakery, onClose}: Props) {
 
     //          event handler: 닫기 버튼 클릭 이벤트 처리           //
     const onCloseButtonClickHandler = () => {
-        
-      onClose();
+        onClose();
     }
 
-    //          effect: 게시물 번호 path variable이 바뀔때 마다 좋아요 및 댓글 리스트 불러오기          //
-    useEffect(() => {
-      setFavoriteList(favoriteListMock);
-      setCommentList(commentListMock);
-    }, []);
-
     //          render: 게시물 상세 화면 컴포넌트 렌더링           //
+    if (!bakery) return <></>
     return (
       <div id='bakery-detail-wrapper'>
         <div className='bakery-detail-container'>
           <div className='bakery-detail-top'>
             <div className='bakery-detail-top-title-box'>
-              <div className='bakery-detail-top-title'>{bakery?.title}</div>
+              <div className='bakery-detail-top-title'>{bakery.title}</div>
               <div className='icon-button' onClick={onCloseButtonClickHandler}>
                 <div className='icon close-icon'></div>
                 </div>
             </div>
-            <div className='bakery-detail-top-road-address'>{bakery?.roadAddress}</div>
+            <div className='bakery-detail-top-road-address'>{bakery.roadAddress}</div>
             
           </div>
           <div className='bakery-detail-button-box'>
@@ -111,7 +108,7 @@ export default function BakeryDetail({bakery, onClose}: Props) {
             </div>
             <div className='bakery-detail-comment-input-box'>
               <div className='bakery-detail-comment-input-container'>
-                <textarea  className='bakery-detail-comment-textarea' placeholder='댓글을 작성해주세요.'/>
+                <textarea  className='bakery-detail-comment-textarea' placeholder='추천 메뉴와 리뷰를 작성해주세요.'/>
                 <div className='bakery-detail-comment-button-box'>
                   <div className= 'disable-button'>{'댓글달기'}</div>
                 </div>
