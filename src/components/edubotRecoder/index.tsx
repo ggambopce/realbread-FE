@@ -13,19 +13,24 @@ export default function Recorder() {
   const startRecording = async () => {
     if (recording) return; // 이미 녹음 중이면 중단
 
+    setEmotion(null); // 이전 감정 초기화
+    setAudioUrl(null); // 이전 응답 초기화
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+
+      audioChunksRef.current = []; // 시작할 때 초기화
+      
+
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data.size > 0) {
+        audioChunksRef.current.push(e.data);
+        }
+      };
     
 
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    const mediaRecorder = new MediaRecorder(stream);
-
-    audioChunksRef.current = []; // 시작할 때 초기화
     
-
-    mediaRecorder.ondataavailable = (e) => {
-      if (e.data.size > 0) {
-      audioChunksRef.current.push(e.data);
-      }
-    };
 
       mediaRecorder.onstop = async () => {
       const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
@@ -55,6 +60,9 @@ export default function Recorder() {
     mediaRecorderRef.current = mediaRecorder;
     mediaRecorder.start();
     setRecording(true);
+  } catch (error) {
+      console.error('녹음 시작 실패:', error);
+    }
   };
 
   const stopRecording = () => {
@@ -87,7 +95,29 @@ export default function Recorder() {
 
       
       <div id='main-counselbot-wrapper'>
-        
+        <div className="main-emotion-recoder-box">
+        <button
+          className="emotion-button"
+          onMouseDown={startRecording}
+          onMouseUp={stopRecording}
+          onTouchStart={startRecording}
+          onTouchEnd={stopRecording}
+        >
+          <div className={`emotion-icon ${emotion || 'BASIC_SMILE'}`} />
+        </button>
+      </div>
+
+      {audioUrl && (
+        <div style={{ marginTop: '20px' }}>
+          <p>상담 응답 오디오</p>
+          <audio controls autoPlay src={audioUrl} />
+          {emotion && (
+            <div style={{ marginTop: '10px' }}>
+              <p>감정: {emotion}</p>
+            </div>
+          )}
+        </div>
+      )}
       </div>
      
     </div>
