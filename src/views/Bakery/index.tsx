@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import './style.css'
 import FavoriteItem from 'components/favoriteItem'
 import { CommentListItem, FavoriteListItem } from 'types/interface'
 import CommentItem from 'components/commentItem';
 import Pagination from 'components/pagination';
 import BakeryDetailItem from 'types/interface/bakery-detail-item.interface';
+import { GetFavoriteListResponseDto, PutFavoriteResponseDto } from 'apis/response/bakery';
+import { ResponseDto } from 'apis/response';
+import useLoginUserStore from 'stores/login-user.store';
+import { useCookies } from 'react-cookie';
+import { usePagination } from 'hooks';
+import { getFavoriteListRequest, putFavoriteRequest } from 'apis';
 
 interface Props {
   bakery: BakeryDetailItem;
@@ -14,17 +20,75 @@ interface Props {
 //          component: 게시물 상세 패널 컴포넌트           //
 export default function BakeryDetail({ bakery, onClose }: Props) {
 
+    //          state: 로그인 유지 상태          //
+    const { loginUser } = useLoginUserStore();
+    //          state: 쿠키 상태            //
+    const [cookies, setCookies] = useCookies();
+
     //          state: 좋아요 리스트 상태          //
     const [favoriteList, setFavoriteList] = useState<FavoriteListItem[]>([]);
-    //          state: 댓글 리스트 상태(임시)          //
-    const [commentList, setCommentList] = useState<CommentListItem[]>([]);
+    //          state: 좋아요 상태          //
+    const [isFavorite, setFavorite] = useState<boolean>(false);
+    
     //          state: 추천 메뉴 선택 상태          //
     const [selectedMenuName, setSelectedMenuName] = useState<string>('');
+
     //          state: 좋아요 상자 보기 상태          //
     const [showFavorite, setShowFavorite] = useState<boolean>(false);
     //          state: 댓글 상자 보기 상태          //
     const [showComment, setShowComment] = useState<boolean>(false);
-    
+    //          state: 댓글 상태          //
+    const [comment, setComment] = useState<string>('');
+    //          state: 전체 댓글 개수 상태          //
+    const [totalCommentCount, setTotalCommnetCount] = useState<number>(0);
+  
+    //          state: 페이지네이션 관련 상태           //
+    const {
+      currentPage, currentSection, viewList, viewPageList, totalSection,
+      setCurrentPage, setCurrentSection, setTotalList,
+    } = usePagination<CommentListItem>(3);
+
+    //          function: get favorite list response 처리 함수          //
+    const getFavoriteListResponse = (responseBody: GetFavoriteListResponseDto | ResponseDto | null) => {
+      if (!responseBody) return;
+      const { code } = responseBody;
+      if (code === 'NB') alert('존재하지 않는 빵집 입니다.');
+      if (code === 'DBE') alert('데이터베이스 오류입니다.')
+      if (code !== 'SU') return;
+
+      const { favoriteList } = responseBody as GetFavoriteListResponseDto;
+      setFavoriteList(favoriteList);
+
+      if (!loginUser) {
+        setFavorite(false);
+        return;
+      }
+      const isFavorite = favoriteList.findIndex(favorite => favorite.email === loginUser.email) !== -1;
+      setFavorite(isFavorite);
+    }
+    //          function: get favorite response 처리 함수          //
+    const putFavoriteResponse = (responseBody: PutFavoriteResponseDto | ResponseDto | null) => {
+      if (!responseBody) return;
+      const { code } = responseBody;
+      if (code === 'VF') alert('잘못된 접근입니다.')
+      if (code === 'NU') alert('존재하지 않는 유저입니다.');
+      if (code === 'NB') alert('존재하지 않는 게시물입니다.');
+      if (code === 'AF') alert('인증에 실패했습니다.')
+      if (code === 'DBE') alert('데이터베이스 오류입니다.')
+      if (code !== 'SU') return;
+
+      setComment('');
+
+      if (!bakery.bakeryNumber) return;
+      getFavoriteListRequest(bakery.bakeryNumber).then(getFavoriteListResponse);
+    }
+
+    //          event handler: 좋아요 클릭 이벤트 처리           //
+    const onFavoriteClickHandler = () => {
+      if (!loginUser || !cookies.accessToken || !bakery.bakeryNumber) return;
+      putFavoriteRequest(bakery.bakeryNumber, cookies.accessToken).then(putFavoriteResponse);
+
+    }
     //          event handler: 좋아요 상자 보기 클릭 이벤트 처리           //
     const onShowFavoriteClickHandler = () => {
       setShowFavorite(!showFavorite);
@@ -56,10 +120,12 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
           </div>
           <div className='bakery-detail-button-box'>
             <div className='bakery-detail-button-group'>
-              <div className='icon-button'>
-                <div className='icon favorite-fill-icon'></div>
+              <div className='icon-button' onClick={onFavoriteClickHandler}>
+                {isFavorite ? <div className='icon favorite-fill-icon'></div> :
+                <div className='icon favorite-light-icon'></div>
+                }
               </div>
-              <div className='bakery-detail-button-text'>{`좋아요 ${5}`}</div>
+              <div className='bakery-detail-button-text'>{`좋아요 ${favoriteList.length}`}</div>
               <div className='icon-button' onClick={onShowFavoriteClickHandler}>
                 {showFavorite ? <div className='icon up-light-icon'></div> : <div className='icon down-light-icon'></div>}
               </div>
@@ -68,7 +134,7 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
               <div className='icon-button'>
                 <div className='icon comment-icon'></div>
               </div>
-              <div className='bakery-detail-button-text'>{`댓글 ${3}`}</div>
+              <div className='bakery-detail-button-text'>{`댓글 ${totalCommentCount}`}</div>
               <div className='icon-button' onClick={onShowCommentClickHandler}>
                 {showComment ? <div className='icon up-light-icon'></div> : <div className='icon down-light-icon'></div>}
               </div>
@@ -77,7 +143,7 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
           {showFavorite &&
           <div className='bakery-detail-favorite-box'>
             <div className='bakery-detail-favorite-container'>
-              <div className='bakery-detail-favorite-title'>{'좋아요 '}<span className='emphasis'>{12}</span></div>
+              <div className='bakery-detail-favorite-title'>{'좋아요 '}<span className='emphasis'>{favoriteList.length}</span></div>
               <div className='bakery-detail-favorite-contents'>
               {favoriteList.map(item => <FavoriteItem favoriteListItem={item} />)}
               </div>
@@ -87,16 +153,24 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
           {showComment &&
           <div className='bakery-detail-comment-box'>
             <div className='bakery-detail-comment-container'>
-            <div className='bakery-detail-comment-title'>{'댓글 '}<span className='emphasis'>{12}</span></div>
+            <div className='bakery-detail-comment-title'>{'댓글 '}<span className='emphasis'>{totalCommentCount}</span></div>
             <div className='bakery-detail-comment-list-container'>
-              {commentList.map(item => <CommentItem commentListItem={item} />)}
+              {viewList.map(item => <CommentItem commentListItem={item} />)}
             </div>
             <div className='divider'></div>
             <div className='bakery-detail-comment-pagination-box'>
-              <Pagination />
+              <Pagination
+              currentPage={currentPage}
+              currentSection={currentSection}
+              setCurrentPage={setCurrentPage}
+              setCurrentSection={setCurrentSection}
+              viewPageList={viewPageList}
+              totalSection={totalSection}
+
+            />
             </div>
             <div className="menu-choice-toggle-group">
-              {menuNames.map(name => (
+              {[...new Set(bakery.menuList.map(menu => menu.menuName))].map(name => (
                 <button
                   key={name}
                   className={`menu-toggle-button ${selectedMenuName === name ? 'selected' : ''}`}

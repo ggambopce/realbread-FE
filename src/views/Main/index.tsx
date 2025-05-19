@@ -17,12 +17,6 @@ import { MAIN_PATH } from 'app-constants'
 //          component: 메인 화면 컴포넌트           //
 export default function Main() {
 
-  
-
-
-
-
-
 
   //          state: 빵집 상세 패널 상태           //
   const [showDetail, setShowDetail] = useState(false);
@@ -52,7 +46,7 @@ export default function Main() {
   }
 
   //          function: get bakery detail response 처리 함수          //
-  const GetBakeryDetailResponse = (responseBody: GetBakeryDetailResponseDto | ResponseDto | null) => {
+  const getBakeryDetailResponse = (responseBody: GetBakeryDetailResponseDto | ResponseDto | null) => {
     if (!responseBody) return;
     const { code } = responseBody;
     if (code === 'NB') alert('존재하지 않는 빵집 입니다.');
@@ -70,7 +64,7 @@ export default function Main() {
       
       if (!bakeryNumber) return;
 
-      getBakeryDetailRequest(bakeryNumber).then(GetBakeryDetailResponse);
+      getBakeryDetailRequest(bakeryNumber).then(getBakeryDetailResponse);
       setShowDetail(true);
     }
   
