@@ -48,7 +48,7 @@
 .bakery-search-sort-buttons {
   display: flex;
   justify-content: flex-end;
-  gap: px;
+  gap: 8px;
   width: 100%;
 }
 

@@ -6,18 +6,20 @@ import SearchButton from 'components/searchBox'
 import { BakerySummary } from 'types/interface/bakery-main-list.interface'
 import Pagination from 'components/pagination'
 import { usePagination } from 'hooks'
-import { GetBakeryDetailResponseDto, GetBakeryMainListResponseDto } from 'apis/response/bakery'
+import { GetBakeryDetailResponseDto, GetBakeryMainListResponseDto, GetBakerySearchListResponseDto } from 'apis/response/bakery'
 import ResponseDto from 'apis/response/response.dto'
-import { getBakeryDetailRequest, getBakeryMainListRequest, getPopularListRequest } from 'apis'
+import { getBakeryDetailRequest, getBakeryMainListRequest, getBakerySearchListRequest, getPopularListRequest, getRelationListRequest } from 'apis'
 import BakeryListItem from 'components/bakeryListItem'
 import BakeryDetailItem from 'types/interface/bakery-detail-item.interface'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { MAIN_PATH } from 'app-constants'
 import { GetPopularListResponseDto, GetRelationListResponseDto } from 'apis/response/search'
 
 //          component: 메인 화면 컴포넌트           //
 export default function Main() {
 
+  //          state: searchWord path variable 상태          //
+  const { searchWord } = useParams();
 
   //          state: 빵집 상세 패널 상태           //
   const [showDetail, setShowDetail] = useState(false);
@@ -37,7 +39,7 @@ export default function Main() {
   //          state: 검색 게시물 개수 상태          //
   const [count, setCount] = useState<number>(2)
   //          state: 검색 게시물 리스트 상태 (임시)          //
-  const [searchBoardList, setSearchBoardList] = useState<BoardListItemType[]>([]);
+  const [searchBakeryList, setSearchBakeryList] = useState<BakerySummary[]>([]);
   //          state: 관련 검색어 리스트 상태          //
   const [relativeWordList, setRelationWordList] = useState<string[]>([]);
 
@@ -52,15 +54,15 @@ export default function Main() {
     setPopularWordList(popularWordList);
   }
 
-  //          function: get search board list response 처리 함수          //
-  const getSearchBoardListResponse = (responseBody: GetSearchBakeryListResponseDto | ResponseDto | null) => {
+  //          function: get search bakery list response 처리 함수          //
+  const getBakerySearchListResponse = (responseBody: GetBakerySearchListResponseDto | ResponseDto | null) => {
     if (!responseBody) return;
     const {code} = responseBody;
     if (code === 'DBE') alert('데이터베이스 오류입니다.');
     if (code !== 'SU') return;
 
     if (!searchWord) return;
-    const {searchList} = responseBody as GetSearchBakerydListResponseDto;
+    const {searchList} = responseBody as GetBakerySearchListResponseDto;
     setTotalList(searchList);
     setCount(searchList.length);
     setPreSearchWord(searchWord);
@@ -110,6 +112,10 @@ export default function Main() {
     const onPopularWordClickHandler = (word: string) => {
       
     }
+   //          event handler: 연관 검색어 클릭 이벤트 처리          //
+  const onRelationWordClickHandler = (word: string) => {
+
+  } 
 
   //          event handler: 빵집 이름 클릭 이벤트 처리           //
     const onTitleClickHandler = (bakeryNumber: number) => {
@@ -120,7 +126,12 @@ export default function Main() {
       setShowDetail(true);
     }
   
-
+  //          effect: search word 상태 변경 시 실행될 함수          //
+  useEffect(() => {
+    if (!searchWord) return;
+    getBakerySearchListRequest(searchWord, preSearchWord).then(getBakerySearchListResponse);
+    getRelationListRequest(searchWord).then(getRelationListResponse);
+  }, [searchWord]);
 
   //          effect: 첫 마운트 시 실행될 함수          //
   useEffect(() => {
@@ -131,18 +142,59 @@ export default function Main() {
   //          render: 메인 화면 컴포넌트 렌더링          //
   return (
     <div className="main-wrapper">
-      <div className="main-sidebar">
-        <div className='bakery-search-box'>
-           <div className='bakery-search-wrapper'>
-          <SearchButton />
-          </div>
-          <div className='bakery-search-sort-buttons'>
-            <button className="sort-button">좋아요순</button>
-            <button className="sort-button">댓글순</button>
+  {/* 왼쪽 사이드바 */}
+  <div className="main-sidebar">
+    <div className='bakery-search-box'>
+      <div className='bakery-search-wrapper'>
+        <SearchButton />
+      </div>
+      <div className='bakery-search-sort-buttons'>
+        <button className="sort-button">좋아요순</button>
+        <button className="sort-button">댓글순</button>
+      </div>
+
+      {searchWord ? (
+        <div className='search-contents-box'>
+          {count === 0 ? (
+            <div className='search-contents-nothing'>검색 결과가 없습니다.</div>
+          ) : (
+            <div className='search-contents'>
+              {viewList.map(bakery => (
+                <BakeryListItem
+                  key={bakery.bakeryNumber}
+                  bakeryListItem={bakery}
+                  onTitleClick={onTitleClickHandler}
+                />
+              ))}
+            </div>
+          )}
+
+          <div className='search-relation-box'>
+            <div className='search-relation-card'>
+              <div className='search-relation-card-container'>
+                <div className='search-relation-card-title'>관련 검색어</div>
+                {relativeWordList.length === 0 ? (
+                  <div className='search-relation-card-contents-nothing'>관련 검색어가 없습니다.</div>
+                ) : (
+                  <div className='search-relation-card-contents'>
+                    {relativeWordList.map(word => (
+                      <div
+                        key={word}
+                        className='word-badge'
+                        onClick={() => onRelationWordClickHandler(word)}
+                      >
+                        {word}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
+      ) : (
         <div className="bakery-list-wrapper">
-          {viewList.map((bakery) => (
+          {viewList.map(bakery => (
             <BakeryListItem
               key={bakery.bakeryNumber}
               bakeryListItem={bakery}
@@ -157,19 +209,27 @@ export default function Main() {
               setCurrentSection={setCurrentSection}
               viewPageList={viewPageList}
               totalSection={totalSection}
-
             />
           </div>
         </div>
-      </div>
-      <div className="main-map">
-        <NaverMap bakeryList={totalList}/>
-      </div>
-      {showDetail && detailBakery &&( 
-        <div className="bakery-detail-panel">
-        <BakeryDetail bakery={detailBakery} onClose={() => setShowDetail(false)}/>
-      </div>
       )}
     </div>
+  </div>
+
+  {/* 오른쪽 지도 */}
+  <div className="main-map">
+    <NaverMap bakeryList={totalList} />
+  </div>
+
+  {/* 선택된 빵집 상세 정보 패널 */}
+  {showDetail && detailBakery && (
+    <div className="bakery-detail-panel">
+      <BakeryDetail
+        bakery={detailBakery}
+        onClose={() => setShowDetail(false)}
+      />
+    </div>
+  )}
+</div>
   )
 }

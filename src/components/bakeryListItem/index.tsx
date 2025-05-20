@@ -16,7 +16,7 @@ export default function BakeryListItem({ bakeryListItem, onTitleClick }: Props) 
     // const {bakeryNumber, , mapx, mapy};
 
     //          event handler: link 클릭 이벤트 처리 함수          //
-    const onLinkClickHandler = () => {
+    const onLinkClickHandler = (link: string) => {
         // 해당 링크 주소 새창으로 열기
         window.open(link, '_blank');
     }
@@ -27,10 +27,12 @@ export default function BakeryListItem({ bakeryListItem, onTitleClick }: Props) 
             <div className='bakery-list-item-main-box'>
                 <div className='bakery-list-item-top'>
                     <div className='bakery-list-item-title' onClick={() => onTitleClick(bakeryNumber)}>{title}</div>
+                    <div className= 'icon-box' onClick={() => onLinkClickHandler(link)}>
+                        <div className='icon link-icon' ></div>
+                    </div> 
                 </div>
                 <div className='bakery-list-item-middle'>
                     <div className='bakery-list-item-roadaddress'>{roadAddress}</div>
-                    <div className='bakery-list-item-link' onClick={onLinkClickHandler}>{link}</div>
                 </div>
                 <div className='bakery-list-item-bottom'>
                     <div className='bakery-list-item-counts'>
