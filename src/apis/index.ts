@@ -1,6 +1,6 @@
 import axios from "axios";
 import { GetSignInUserResponseDto } from "./response/auth";
-import { GetBakeryDetailResponseDto, GetBakeryMainListResponseDto, GetFavoriteListResponseDto, PutFavoriteResponseDto } from "./response/bakery";
+import { GetBakeryDetailResponseDto, GetBakeryMainListResponseDto, GetBakerySearchListResponseDto, GetFavoriteListResponseDto, PutFavoriteResponseDto } from "./response/bakery";
 import { ResponseDto } from "./response";
 import { GetCommentListResponseDto, PostCommentResponseDto } from "./response/comment";
 import { PostCommentRequestDto } from "./request/comment";
@@ -32,6 +32,7 @@ const GET_FAVORITE_LIST_URL = (bakeryNumber: number | string) => `${API_DOMAIN}/
 const PUT_FAVORITE_URL = (bakeryNumber: number | string) => `${API_DOMAIN}/bakery/${bakeryNumber}/favorite`;
 const GET_COMMENT_LIST_URL = (bakeryNumber: number | string) => `${API_DOMAIN}/bakery/${bakeryNumber}/comment-list`;
 const POST_COMMENT_URL = (bakeryNumber: number | string) => `${API_DOMAIN}/bakery/${bakeryNumber}/comment`;
+const GET_BAKERY_SEARCH_LIST_URL = (searchWord: string, preSearchWord: string | null) => `${API_DOMAIN}/bakery/search-list/${searchWord}${preSearchWord ? '/' + preSearchWord : ''}`;
 
 export const getBakeryMainListRequest = async () => {
   const result = await axios.get(GET_BAKERY_MAIN_LIST_URL())
@@ -107,6 +108,20 @@ export const postCommentRequest = async (bakeryNumber: number | string, requestB
     const result = await axios.post(POST_COMMENT_URL(bakeryNumber), requestBody ,authorization(accessToken))
         .then(response => {
             const responseBody: PostCommentResponseDto = response.data;
+            return responseBody;
+        })
+        .catch(error => {
+            if (!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        });
+    return result;
+}
+
+export const getBakerySearchListRequest = async (searchWord: string, preSearchWord: string | null) => {
+    const result = await axios.get(GET_BAKERY_SEARCH_LIST_URL(searchWord, preSearchWord))
+        .then(response => {
+            const responseBody: GetBakerySearchListResponseDto = response.data;
             return responseBody;
         })
         .catch(error => {

@@ -8,11 +8,12 @@ import Pagination from 'components/pagination'
 import { usePagination } from 'hooks'
 import { GetBakeryDetailResponseDto, GetBakeryMainListResponseDto } from 'apis/response/bakery'
 import ResponseDto from 'apis/response/response.dto'
-import { getBakeryDetailRequest, getBakeryMainListRequest } from 'apis'
+import { getBakeryDetailRequest, getBakeryMainListRequest, getPopularListRequest } from 'apis'
 import BakeryListItem from 'components/bakeryListItem'
 import BakeryDetailItem from 'types/interface/bakery-detail-item.interface'
 import { useNavigate } from 'react-router-dom'
 import { MAIN_PATH } from 'app-constants'
+import { GetPopularListResponseDto, GetRelationListResponseDto } from 'apis/response/search'
 
 //          component: 메인 화면 컴포넌트           //
 export default function Main() {
@@ -28,7 +29,53 @@ export default function Main() {
     currentPage, currentSection, viewList, viewPageList, totalSection,
     setCurrentPage, setCurrentSection, setTotalList,totalList
   } = usePagination<BakerySummary>(10);
+  //          state: 인기 검색어 리스트 상태          //
+  const [popularWordList, setPopularWordList] = useState<string[]>([]);
+  //          state:  이전 검색어 상태          //
+  const [preSearchWord, setPreSearchWord ]  = useState<string | null>(null);
 
+  //          state: 검색 게시물 개수 상태          //
+  const [count, setCount] = useState<number>(2)
+  //          state: 검색 게시물 리스트 상태 (임시)          //
+  const [searchBoardList, setSearchBoardList] = useState<BoardListItemType[]>([]);
+  //          state: 관련 검색어 리스트 상태          //
+  const [relativeWordList, setRelationWordList] = useState<string[]>([]);
+
+  //          function: get popular list response 처리 함수          //
+  const getPopularListResponse = (responseBody: GetPopularListResponseDto | ResponseDto | null) => {
+    if (!responseBody) return;
+    const { code } = responseBody;
+    if (code === 'DBE') alert('데이터베이스 오류입니다.')
+    if (code !== 'SU') return;
+
+    const { popularWordList } = responseBody as GetPopularListResponseDto;
+    setPopularWordList(popularWordList);
+  }
+
+  //          function: get search board list response 처리 함수          //
+  const getSearchBoardListResponse = (responseBody: GetSearchBakeryListResponseDto | ResponseDto | null) => {
+    if (!responseBody) return;
+    const {code} = responseBody;
+    if (code === 'DBE') alert('데이터베이스 오류입니다.');
+    if (code !== 'SU') return;
+
+    if (!searchWord) return;
+    const {searchList} = responseBody as GetSearchBakerydListResponseDto;
+    setTotalList(searchList);
+    setCount(searchList.length);
+    setPreSearchWord(searchWord);
+  }
+
+  //          function: get relation list response 처리 함수          //
+  const getRelationListResponse = (responseBody: GetRelationListResponseDto | ResponseDto | null) => {
+    if (!responseBody) return;
+    const {code} = responseBody;
+    if (code === 'DBE') alert('데이터베이스 오류입니다.');
+    if (code !== 'SU') return;
+
+    const { relativeWordList } = responseBody as GetRelationListResponseDto;
+    setRelationWordList(relativeWordList);
+  }
 
 
   //          function: 네비게이트 함수          //
@@ -59,6 +106,11 @@ export default function Main() {
     setDetailBakery( detailBakery );
   }
 
+  //          event handler: 인기 검색어 클릭 이벤트 처리          //
+    const onPopularWordClickHandler = (word: string) => {
+      
+    }
+
   //          event handler: 빵집 이름 클릭 이벤트 처리           //
     const onTitleClickHandler = (bakeryNumber: number) => {
       
@@ -72,6 +124,7 @@ export default function Main() {
 
   //          effect: 첫 마운트 시 실행될 함수          //
   useEffect(() => {
+      getPopularListRequest().then(getPopularListResponse)
       getBakeryMainListRequest().then(getBakeryMainListResponseDto);
     }, []);
   

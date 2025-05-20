@@ -13,7 +13,7 @@ export default function SearchButton() {
     //          state: 검색어 path variable 상태          //
     const {searchWord} = useParams();
 
-    //          function: 네비게이트 함수           //
+     //          function: 네비게이트 함수           //
     const navigator = useNavigate();
 
     //          event handler: 검색어 변경 이벤트 처리 함수          //
@@ -33,6 +33,10 @@ export default function SearchButton() {
             setStatus(!status);
             return;
         }
+        if (!word) return;
+
+        // 검색어를 URL에 반영
+        navigator(`/main/search/${word}`);
     }
 
     //          effect: 검색어 path variable 변경될 때마다 실행된 함수         //
@@ -43,6 +47,13 @@ export default function SearchButton() {
         }
     }, [searchWord])
     
+    if (!status)
+    //          render: 검색 버튼 컴포넌트 랜더링 (클릭 false 상태)           //
+    return (
+        <div className='icon-button' onClick={onSearchButtonClickHandler}>
+            <div className='icon search-light-icon'></div>
+        </div>
+    );
     //          render: 검색 버튼 컴포넌트 랜더링 (클릭 true 상태)           //
     return (
         <div className='search-input-box'>
