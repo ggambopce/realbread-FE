@@ -258,7 +258,14 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
                   <div className='bakery-detail-menu-description'>{menu.description}</div>
                   <div className='bakery-detail-menu-price'>{menu.price}</div>
                 </div>
-                <img src={menu.imageUrl} alt={menu.menuName} className='bakery-detail-menu-image' />
+                <div className="bakery-detail-menu-image-box">
+                  <div
+                  key={menu.menuNumber}
+                  className='bakery-detail-menu-image'
+                  style={{ backgroundImage: `url(${menu.imageUrl})` }}
+                  />
+                </div>
+                
               </div>
             ))}
           </div>

@@ -274,11 +274,19 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding-bottom: 16px;
 }
+
+.bakery-detail-menu-image-box{
+    width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+}
   
 .bakery-detail-menu-image {
     width: 100px;
     height: 100px;
-    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 8px;
     flex-shrink: 0;
 }

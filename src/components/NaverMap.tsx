@@ -1,29 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import bakeryMarker from '../assets/image/bakery-marker.png';
-import axios from "axios";
+import { BakerySummary } from "types/interface/bakery-main-list.interface";
 
-interface BakeryMarker {
-  bakeryNumber: number;
-  mapx: string;
-  mapy: string;
-  title: string;
+interface NaverMapProps {
+  bakeryList: BakerySummary[];
 }
 
-const NaverMap = () => {
+const NaverMap = ({ bakeryList }: NaverMapProps) => {
   const mapElement = useRef<HTMLDivElement | null>(null);
-  const [markerList, setMarkerList] = useState<BakeryMarker[]>([]);
 
-  //          effect: 메인화면 랜더링 될 때 마다 실행될 마커 함수           //
-  useEffect(() => {
-    axios.get("http://localhost:8080/api/bakery/marker/random")
-      .then(response => {
-        const data = response.data.markerList;
-        setMarkerList(data);
-      })
-      .catch(error => {
-        console.error("마커 데이터를 가져오지 못했습니다.", error);
-      });
-  }, []);
+  const mapRef = useRef<naver.maps.Map | null>(null);
+  const markerRef = useRef<naver.maps.Marker[]>([]);
 
   //          effect: 메인화면 랜더링 될 때 마다 실행될 중심 함수           //
   useEffect(() => {
@@ -37,13 +24,44 @@ const NaverMap = () => {
     };
 
     const map = new window.naver.maps.Map(mapElement.current, mapOptions);
+    mapRef.current = map;
 
-    // 마커리스트
-    markerList.forEach(({ mapx, mapy, title }) => {
+    // 내 위치 마커
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const userPosition = new window.naver.maps.LatLng(latitude, longitude);
+
+        new window.naver.maps.Marker({
+          position: userPosition,
+          map,
+          icon: {
+            content: `<div style="background:#007bff;width:14px;height:14px;border-radius:50%;border:2px solid white;"></div>`,
+            anchor: new window.naver.maps.Point(10, 10),
+          },
+        });
+      },
+      (error) => {
+        console.error("위치 정보를 가져올 수 없습니다:", error);
+      }
+    );
+  }, []);
+
+  // 마커 갱신 (bakeryList 변경 시)
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    // 기존 마커 제거
+    markerRef.current.forEach((marker) => marker.setMap(null));
+    markerRef.current = [];
+
+    // 새 마커 생성
+    const newMarkers = bakeryList.map(({ mapx, mapy, title }) => {
       const lat = parseFloat(mapy);
       const lng = parseFloat(mapx);
 
-      new window.naver.maps.Marker({
+      return new window.naver.maps.Marker({
         position: new window.naver.maps.LatLng(lat, lng),
         map,
         icon: {
@@ -76,31 +94,10 @@ const NaverMap = () => {
       });
     });
 
-    // 내 위치 마커 추가
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-
-        const userPosition = new window.naver.maps.LatLng(latitude, longitude);
-
-        // 마커 추가
-        new window.naver.maps.Marker({
-          position: userPosition,
-          map,
-          icon: {
-            content: `<div style="background:#007bff;width:14px;height:14px;border-radius:50%;border:2px solid white;"></div>`,
-            anchor: new window.naver.maps.Point(10, 10),
-          },
-        });
-      },
-      (error) => {
-        console.error("위치 정보를 가져올 수 없습니다:", error);
-      }
-    );
-
-  }, [markerList]);
+    markerRef.current = newMarkers;
+  }, [bakeryList]);
   
-
+  //          render: 메인 지도 컴포넌트 랜더링           //
   return <div ref={mapElement} className="map-container" />;
 };
 

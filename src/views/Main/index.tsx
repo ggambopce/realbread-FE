@@ -26,7 +26,7 @@ export default function Main() {
   //          state: 페이지네이션 관련 상태           //
   const {
     currentPage, currentSection, viewList, viewPageList, totalSection,
-    setCurrentPage, setCurrentSection, setTotalList,
+    setCurrentPage, setCurrentSection, setTotalList,totalList
   } = usePagination<BakerySummary>(10);
 
 
@@ -110,9 +110,9 @@ export default function Main() {
         </div>
       </div>
       <div className="main-map">
-        <NaverMap />
+        <NaverMap bakeryList={totalList}/>
       </div>
-      {showDetail && ( 
+      {showDetail && detailBakery &&( 
         <div className="bakery-detail-panel">
         <BakeryDetail bakery={detailBakery} onClose={() => setShowDetail(false)}/>
       </div>
