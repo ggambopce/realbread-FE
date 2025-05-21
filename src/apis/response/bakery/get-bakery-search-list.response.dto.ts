@@ -1,6 +1,6 @@
-import { BakeryListItem } from "types/interface";
 import ResponseDto from "../response.dto";
+import { BakerySummary } from "types/interface/bakery-main-list.interface";
 
 export default interface GetBakerySearchListResponseDto extends ResponseDto {
-    searchList: BakeryListItem[];
+    searchList: BakerySummary[];
 }

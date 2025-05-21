@@ -108,29 +108,30 @@ export default function Main() {
     setDetailBakery( detailBakery );
   }
 
-  //          event handler: 인기 검색어 클릭 이벤트 처리          //
-    const onPopularWordClickHandler = (word: string) => {
-      
-    }
-   //          event handler: 연관 검색어 클릭 이벤트 처리          //
-  const onRelationWordClickHandler = (word: string) => {
-
-  } 
+  
 
   //          event handler: 빵집 이름 클릭 이벤트 처리           //
-    const onTitleClickHandler = (bakeryNumber: number) => {
-      
-      if (!bakeryNumber) return;
+  const onTitleClickHandler = (bakeryNumber: number) => {
+    
+    if (!bakeryNumber) return;
 
-      getBakeryDetailRequest(bakeryNumber).then(getBakeryDetailResponse);
-      setShowDetail(true);
-    }
+    getBakeryDetailRequest(bakeryNumber).then(getBakeryDetailResponse);
+    setShowDetail(true);
+  }
+  //          event handler: 빵집 이름 클릭 이벤트 처리           //
+  const onMarkerClickHandler = (bakeryNumber: number) => {
+    getBakeryDetailRequest(bakeryNumber)
+      .then((res) => {
+        if (!res || res.code !== 'SU') return;
+        setDetailBakery(res as GetBakeryDetailResponseDto);
+        setShowDetail(true);
+      });
+  };  
   
   //          effect: search word 상태 변경 시 실행될 함수          //
   useEffect(() => {
     if (!searchWord) return;
     getBakerySearchListRequest(searchWord, preSearchWord).then(getBakerySearchListResponse);
-    getRelationListRequest(searchWord).then(getRelationListResponse);
   }, [searchWord]);
 
   //          effect: 첫 마운트 시 실행될 함수          //
@@ -168,29 +169,6 @@ export default function Main() {
               ))}
             </div>
           )}
-
-          <div className='search-relation-box'>
-            <div className='search-relation-card'>
-              <div className='search-relation-card-container'>
-                <div className='search-relation-card-title'>관련 검색어</div>
-                {relativeWordList.length === 0 ? (
-                  <div className='search-relation-card-contents-nothing'>관련 검색어가 없습니다.</div>
-                ) : (
-                  <div className='search-relation-card-contents'>
-                    {relativeWordList.map(word => (
-                      <div
-                        key={word}
-                        className='word-badge'
-                        onClick={() => onRelationWordClickHandler(word)}
-                      >
-                        {word}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
         </div>
       ) : (
         <div className="bakery-list-wrapper">
@@ -218,7 +196,7 @@ export default function Main() {
 
   {/* 오른쪽 지도 */}
   <div className="main-map">
-    <NaverMap bakeryList={totalList} />
+    <NaverMap bakeryList={totalList} onMarkerClick={onMarkerClickHandler}/>
   </div>
 
   {/* 선택된 빵집 상세 정보 패널 */}

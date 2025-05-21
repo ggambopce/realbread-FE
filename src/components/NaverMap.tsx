@@ -4,9 +4,11 @@ import { BakerySummary } from "types/interface/bakery-main-list.interface";
 
 interface NaverMapProps {
   bakeryList: BakerySummary[];
+  onMarkerClick?: (bakeryNumber: number) => void;
+
 }
 
-const NaverMap = ({ bakeryList }: NaverMapProps) => {
+const NaverMap = ({ bakeryList, onMarkerClick }: NaverMapProps) => {
   const mapElement = useRef<HTMLDivElement | null>(null);
 
   const mapRef = useRef<naver.maps.Map | null>(null);
@@ -57,7 +59,7 @@ const NaverMap = ({ bakeryList }: NaverMapProps) => {
     markerRef.current = [];
 
     // 새 마커 생성
-    const newMarkers = bakeryList.map(({ mapx, mapy, title, roadAddress, menuList }) => {
+    const newMarkers = bakeryList.map(({ bakeryNumber, mapx, mapy, title, roadAddress, menuList }) => {
       const lat = parseFloat(mapy);
       const lng = parseFloat(mapx);
 
@@ -140,9 +142,16 @@ const NaverMap = ({ bakeryList }: NaverMapProps) => {
         infoWindow.close();
       });
 
+      //마커 클릭 시 부모에게 bakeryNumber 전달
+      marker.addListener('click', () => {
+        if (onMarkerClick) onMarkerClick(bakeryNumber);
+      });
+
       return marker;
 
     });
+
+    
 
       
     markerRef.current = newMarkers;

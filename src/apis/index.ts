@@ -133,7 +133,7 @@ export const getBakerySearchListRequest = async (searchWord: string, preSearchWo
 }
 
 const GET_POPULAR_LIST_URL = () => `${API_DOMAIN}/search/popular-list`;
-const GET_RELATION_LIST_URL = (searchWord: string) => `${API_DOMAIN}/search/${searchWord}/relation-list}`;
+const GET_RELATION_LIST_URL = (searchWord: string) => `${API_DOMAIN}/search/${searchWord}/relation-list`;
 
 export const getPopularListRequest = async () => {
     const result = await axios.get(GET_POPULAR_LIST_URL())

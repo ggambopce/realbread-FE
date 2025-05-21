@@ -53,6 +53,7 @@ function App() {
     <Routes>
         <Route element={<Container />}>
           <Route path={MAIN_PATH()} element={ <Main /> } />
+          <Route path="/search/:searchWord" element={<Main />} />
           <Route path={USER_PATH(':userId')} element={ <UserP />}/>
           <Route path='/auth/oauth-response/:token/:expirationTime' element= {<OAuth/>} />
           <Route path={EDUBOT_RECODER()} element={ <EduBot />} />
