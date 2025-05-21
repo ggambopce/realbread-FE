@@ -34,8 +34,8 @@ const GET_COMMENT_LIST_URL = (bakeryNumber: number | string) => `${API_DOMAIN}/b
 const POST_COMMENT_URL = (bakeryNumber: number | string) => `${API_DOMAIN}/bakery/${bakeryNumber}/comment`;
 const GET_BAKERY_SEARCH_LIST_URL = (searchWord: string, preSearchWord: string | null) => `${API_DOMAIN}/bakery/search-list/${searchWord}${preSearchWord ? '/' + preSearchWord : ''}`;
 
-export const getBakeryMainListRequest = async () => {
-  const result = await axios.get(GET_BAKERY_MAIN_LIST_URL())
+export const getBakeryMainListRequest = async (sort: string = '') => {
+  const result = await axios.get(GET_BAKERY_MAIN_LIST_URL(), { params:{ sort },})
     .then(response => {
       const responseBody: GetBakeryMainListResponseDto = response.data;
       return responseBody;
