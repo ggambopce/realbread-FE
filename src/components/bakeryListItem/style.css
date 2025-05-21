@@ -15,20 +15,45 @@
    
 }
 
-.backery-list-item-top {
+.bakery-list-item-top {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
 }
  
 .bakery-list-item-title {
     color: rgba(0, 0, 0, 1);
 
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 140%;
+    transition: color 0.2s ease;
+    
+}
 
+.bakery-list-item-title:hover {
     cursor: pointer;
+    color: #007aff;
+}
+
+.link-icon-box{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bakery-list-item-link-icon{
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.bakery-list-item-link-icon:hover {
+    opacity: 0.7;
 }
 
 .bakery-list-item-middle {

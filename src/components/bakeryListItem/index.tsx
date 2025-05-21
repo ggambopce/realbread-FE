@@ -27,9 +27,13 @@ export default function BakeryListItem({ bakeryListItem, onTitleClick }: Props) 
             <div className='bakery-list-item-main-box'>
                 <div className='bakery-list-item-top'>
                     <div className='bakery-list-item-title' onClick={() => onTitleClick(bakeryNumber)}>{title}</div>
-                    <div className= 'icon-box' onClick={() => onLinkClickHandler(link)}>
-                        <div className='icon link-icon' ></div>
-                    </div> 
+                    {link && (
+                    <div className='bakery-list-item-link-icon'>
+                        <div className= 'link-icon-box' onClick={() => onLinkClickHandler(link)} aria-label="홈페이지 이동">
+                            <div className='icon link-icon' ></div>
+                        </div> 
+                    </div>
+                    )}    
                 </div>
                 <div className='bakery-list-item-middle'>
                     <div className='bakery-list-item-roadaddress'>{roadAddress}</div>

@@ -57,11 +57,11 @@ const NaverMap = ({ bakeryList }: NaverMapProps) => {
     markerRef.current = [];
 
     // 새 마커 생성
-    const newMarkers = bakeryList.map(({ mapx, mapy, title }) => {
+    const newMarkers = bakeryList.map(({ mapx, mapy, title, roadAddress, menuList }) => {
       const lat = parseFloat(mapy);
       const lng = parseFloat(mapx);
 
-      return new window.naver.maps.Marker({
+      const marker = new window.naver.maps.Marker({
         position: new window.naver.maps.LatLng(lat, lng),
         map,
         icon: {
@@ -92,8 +92,59 @@ const NaverMap = ({ bakeryList }: NaverMapProps) => {
           anchor: new window.naver.maps.Point(15, 40),
         },
       });
+      // 메뉴 이미지들 최대 4개 추출해서 HTML 문자열로 만들기
+      const images = (menuList ?? [])
+        .filter(menu => !!menu.imageUrl && menu.imageUrl.trim() !== '')
+        .slice(0, 4);
+      const imageHtml = images.map((menu) => `
+          <div style="
+            width: 50px;
+            height: 50px;
+            margin-right: 4px;
+            background-image: url(${menu.imageUrl});
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            display: inline-block;
+          "></div>
+        `).join('');
+      // 이미지 블록을 아예 감싸는 부분을 조건부로 분기
+      const imageWrapperHtml = images.length > 0
+        ? `<div style="display: flex;">${imageHtml}</div>`
+        : ''; // 아예 비워서 렌더링되지 않게  
+
+      // InfoWindow 생성
+      const infoWindow = new window.naver.maps.InfoWindow({
+        content: `
+        <div style="
+          width: 220px; padding: 10px; background: white;
+        ">
+          <div style="font-weight: bold; font-size: 14px; margin-bottom: 6px;">${title}</div>
+          <div style="font-size: 12px; color: #666; margin-bottom: 8px;">${roadAddress}</div>
+          ${imageWrapperHtml}
+        </div>
+      `,
+        disableAnchor: true,
+        borderWidth: 1,
+      });
+
+      // 마우스 이벤트 등록
+      marker.addListener('mouseover', () => {
+        infoWindow.open(map, marker);
+      });
+
+  
+
+      marker.addListener('mouseout', () => {
+        infoWindow.close();
+      });
+
+      return marker;
+
     });
 
+      
     markerRef.current = newMarkers;
   }, [bakeryList]);
   

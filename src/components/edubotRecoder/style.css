@@ -16,7 +16,6 @@
 /* 버튼 애니메이션: 응답 중 */
 .emotion-button.processing {
   animation: rotate 1s linear infinite;
-  border: 2px dashed #4caf50;
 }
 
 /* 기본 버튼 스타일 */
