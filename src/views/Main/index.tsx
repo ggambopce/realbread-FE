@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './style.css'
 import NaverMap from 'components/NaverMap'
 import BakeryDetail from 'views/Bakery'
@@ -18,6 +18,8 @@ import { GetPopularListResponseDto, GetRelationListResponseDto } from 'apis/resp
 //          component: 메인 화면 컴포넌트           //
 export default function Main() {
 
+  const mapRef = useRef<NaverMapRef>(null);
+
   //          state: searchWord path variable 상태          //
   const { searchWord } = useParams();
 
@@ -35,11 +37,8 @@ export default function Main() {
   const [popularWordList, setPopularWordList] = useState<string[]>([]);
   //          state:  이전 검색어 상태          //
   const [preSearchWord, setPreSearchWord ]  = useState<string | null>(null);
-
   //          state: 검색 게시물 개수 상태          //
   const [count, setCount] = useState<number>(2)
-  //          state: 검색 게시물 리스트 상태 (임시)          //
-  const [searchBakeryList, setSearchBakeryList] = useState<BakerySummary[]>([]);
   //          state: 관련 검색어 리스트 상태          //
   const [relativeWordList, setRelationWordList] = useState<string[]>([]);
 
@@ -112,8 +111,12 @@ export default function Main() {
 
   //          event handler: 빵집 이름 클릭 이벤트 처리           //
   const onTitleClickHandler = (bakeryNumber: number) => {
-    
-    if (!bakeryNumber) return;
+    const bakery = totalList.find(b => b.bakeryNumber === bakeryNumber);
+    if (!bakery) return;
+
+    const lat = parseFloat(bakery.mapy);
+    const lng = parseFloat(bakery.mapx);
+    mapRef.current?.panTo(lat, lng);
 
     getBakeryDetailRequest(bakeryNumber).then(getBakeryDetailResponse);
     setShowDetail(true);
@@ -196,7 +199,7 @@ export default function Main() {
 
   {/* 오른쪽 지도 */}
   <div className="main-map">
-    <NaverMap bakeryList={totalList} onMarkerClick={onMarkerClickHandler}/>
+    <NaverMap ref={mapRef} bakeryList={totalList} onMarkerClick={onMarkerClickHandler}/>
   </div>
 
   {/* 선택된 빵집 상세 정보 패널 */}

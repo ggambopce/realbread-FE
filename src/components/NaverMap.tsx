@@ -1,18 +1,32 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import bakeryMarker from '../assets/image/bakery-marker.png';
 import { BakerySummary } from "types/interface/bakery-main-list.interface";
 
+export interface NaverMapRef {
+  panTo: (lat: number, lng: number) => void;
+}
 interface NaverMapProps {
   bakeryList: BakerySummary[];
   onMarkerClick?: (bakeryNumber: number) => void;
 
 }
 
-const NaverMap = ({ bakeryList, onMarkerClick }: NaverMapProps) => {
+const NaverMap = forwardRef<NaverMapRef, NaverMapProps>(
+  ({ bakeryList, onMarkerClick }, ref) => {
   const mapElement = useRef<HTMLDivElement | null>(null);
 
   const mapRef = useRef<naver.maps.Map | null>(null);
   const markerRef = useRef<naver.maps.Marker[]>([]);
+
+  //        event handler: 외부에 map.panTo 제공          //
+  useImperativeHandle(ref, () => ({
+    panTo(lat: number, lng: number) {
+      const map = mapRef.current;
+      if (map) {
+        map.panTo(new window.naver.maps.LatLng(lat, lng));
+      }
+    }
+  }));
 
   //          effect: 메인화면 랜더링 될 때 마다 실행될 중심 함수           //
   useEffect(() => {
@@ -145,6 +159,9 @@ const NaverMap = ({ bakeryList, onMarkerClick }: NaverMapProps) => {
       //마커 클릭 시 부모에게 bakeryNumber 전달
       marker.addListener('click', () => {
         if (onMarkerClick) onMarkerClick(bakeryNumber);
+
+        //마커 클릭 시 중심 이동
+         map.panTo(new window.naver.maps.LatLng(lat, lng));
       });
 
       return marker;
@@ -159,6 +176,7 @@ const NaverMap = ({ bakeryList, onMarkerClick }: NaverMapProps) => {
   
   //          render: 메인 지도 컴포넌트 랜더링           //
   return <div ref={mapElement} className="map-container" />;
-};
+}
+);
 
 export default NaverMap;
