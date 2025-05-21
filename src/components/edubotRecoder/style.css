@@ -1,3 +1,69 @@
+.main-recoder-wrapper {
+  padding: 80px 0 40px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.main-counselbot-container{
+  width: 340px;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-emotion-recoder-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recoder-bubble-wrapper {
+  position: relative;
+  display: inline-block;
+} 
+
+/* 기본적으로 말풍선은 숨김 */
+.recorder-status-bubble {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0px;
+  background: #f0f0f0;
+  padding: 10px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
+/* 말풍선 꼬리 */
+.recorder-status-bubble::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 8px 8px 8px;
+  border-style: solid;
+  border-color: transparent transparent #f0f0f0 transparent;
+}
+
+/* hover 시 말풍선 보이기 */
+.recoder-bubble-wrapper:hover .recorder-status-bubble {
+  display: block;
+}
+
+/* 상태가 active일 때 강제로 보이기 */
+.recoder-bubble-wrapper.active .recorder-status-bubble {
+  display: block;
+}
+
 /* 상태 텍스트 */
 .recorder-status-text {
   font-size: 16px;
@@ -9,13 +75,23 @@
 
 /* 버튼 애니메이션: 녹음 중 */
 .emotion-button.recording {
-  animation: pulse 1s infinite ease-in-out;
-  border: 2px solid #2196f3;
+  animation: pulse-recording 1s infinite ease-in-out;
+}
+
+/* 버튼 애니메이션: 생각 중 */
+.emotion-button.processing {
+  animation: pulse-processing 1s infinite ease-in-out;
 }
 
 /* 버튼 애니메이션: 응답 중 */
-.emotion-button.processing {
-  animation: rotate 1s linear infinite;
+.emotion-icon.talking {
+  animation: pulse-talking 1.2s infinite ease-in-out;
+}
+
+
+.emotion-button,
+.emotion-icon {
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* 기본 버튼 스타일 */
@@ -37,19 +113,34 @@
   transition: transform 0.3s ease;
 }
 
-/* 녹음 중: 파동 */
-@keyframes pulse {
+/* 녹음 중*/
+@keyframes pulse-recording {
   0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.1); opacity: 0.8; }
+  50% { transform: scale(1.08); opacity: 0.85; }
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* 응답 중: 회전 */
-@keyframes rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* 생각 중 */
+@keyframes pulse-processing {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.04); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
+/* 응답중 */
+@keyframes pulse-talking {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.audio-response-box{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
 
 .emotion-icon {
   width: 100px;
@@ -57,7 +148,20 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  transition: opacity 0.3s ease;
+  opacity: 1;
 }
+
+.emotion-label {
+  display: none;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 8px;
+  color: #555;
+  text-align: center;
+}
+
+
 
 /* === 영어 Emotion enum 기준 클래스 === */
 .REJECT { background-image: url(assets/거부.png); }
