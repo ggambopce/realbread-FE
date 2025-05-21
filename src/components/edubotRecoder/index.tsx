@@ -19,6 +19,18 @@ export default function Recorder() {
   const startRecording = async () => {
     if (recording || isProcessing) return; // 녹음 중 또는 처리 중이면 중단
 
+    // 만약 오디오 재생 중이면 → 재생 중단 + 상태 초기화
+    if (isAudioPlaying) {
+      const audio = document.querySelector('audio');
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+      setIsAudioPlaying(false);
+      setAudioUrl(null);
+      setEmotion(null); // 감정도 초기화
+    }
+
 
     setEmotion(null); // 이전 감정 초기화
     setAudioUrl(null); // 이전 응답 초기화
@@ -82,6 +94,7 @@ export default function Recorder() {
     if (!recording) return;
     mediaRecorderRef.current?.stop();
     setRecording(false);
+    setEmotion(null); 
   };
 
   //          render: 상담 봇 컴포넌트 랜더링          //
@@ -112,7 +125,7 @@ export default function Recorder() {
                   ? "생각 중입니다..."
                   : isAudioPlaying
                   ? "응답 중..."
-                  : "저를 누르고 말해보세요"}
+                  : "저를 누르고 있는 상태에서 말해보세요"}
               </p>
             </div>
           </div>
@@ -124,7 +137,7 @@ export default function Recorder() {
           <audio controls autoPlay 
             src={audioUrl}
             onPlay={() => setIsAudioPlaying(true)}
-            onEnded={() => setIsAudioPlaying(false)}
+            onEnded={() => {setIsAudioPlaying(false); setEmotion(null);}}
             onPause={() => setIsAudioPlaying(false)} 
           />
           {emotion && (

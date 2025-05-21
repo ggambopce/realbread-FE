@@ -2,6 +2,7 @@ import './style.css'
 import { SNS_SIGN_IN_URL } from 'apis';
 import { AUTH_PATH, MAIN_PATH, USER_PATH } from 'app-constants';
 import kakaoLoginButton from 'assets/image/kakao-login-button.png'
+import Recorder from 'components/edubotRecoder';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -93,6 +94,9 @@ export default function Header() {
                 <div className='header-logo'>{'Real Bread'}</div>
             </div>
             <div className='header-right-box'>
+              <div className='header-counsel-bot'>
+                <Recorder/>
+              </div>
                 {(isMainPage || isUserPage) && <MyPageButton />}
             </div>
         </div>

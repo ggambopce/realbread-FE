@@ -25,6 +25,7 @@
 .recoder-bubble-wrapper {
   position: relative;
   display: inline-block;
+  z-index: 10;
 } 
 
 /* 기본적으로 말풍선은 숨김 */
@@ -40,6 +41,7 @@
   border-radius: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   white-space: nowrap;
+  z-index: 9999; /* 이걸로 충분히 띄울 수 있음 */
 }
 
 /* 말풍선 꼬리 */
@@ -143,8 +145,8 @@
 }
 
 .emotion-icon {
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
