@@ -121,21 +121,33 @@
   border-radius: 6px;
   flex-shrink: 0;
 }
+.bakery-detail-panel-wrapper{
+  position: fixed;
+  top: 95px;
+  left: 390px;
+  bottom: 95px;
+  width: 420px;
+
+  border-radius: 16px;
+  background: white;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  overflow: hidden;
+
+}
 
 .bakery-detail-panel {
-  position: absolute;
-  top: 50%;
-  left: 630px;
-  transform: translate(-50%, -50%);
-  width: 450px;
-  max-height: 82%;
-  background: white;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  border-radius: 8px;
+
+  height: 100%;
   overflow-y: auto;
-  z-index: 1000;
+  box-sizing: border-box;
   padding: 20px;
+
+
 }
+
 .bakery-list-pagination-box {
   display: flex;
   justify-content: center;

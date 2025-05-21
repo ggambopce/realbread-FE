@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './style.css'
-import NaverMap from 'components/NaverMap'
+import NaverMap, { NaverMapRef } from 'components/NaverMap'
 import BakeryDetail from 'views/Bakery'
 import SearchButton from 'components/searchBox'
 import { BakerySummary } from 'types/interface/bakery-main-list.interface'
@@ -234,12 +234,15 @@ export default function Main() {
 
   {/* 선택된 빵집 상세 정보 패널 */}
   {showDetail && detailBakery && (
-    <div className="bakery-detail-panel">
+  <div className='bakery-detail-panel-wrapper'>
+    <div className='bakery-detail-panel'>
       <BakeryDetail
         bakery={detailBakery}
         onClose={() => setShowDetail(false)}
       />
     </div>
+  </div>  
+    
   )}
 </div>
   )

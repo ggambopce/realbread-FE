@@ -134,15 +134,21 @@ const NaverMap = forwardRef<NaverMapRef, NaverMapProps>(
       const infoWindow = new window.naver.maps.InfoWindow({
         content: `
         <div style="
-          width: 220px; padding: 10px; background: white;
+          width: 220px; padding: 10px; 
+          background: white;
+          border-radius: 12px; 
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          border: 1px solid #ccc;
         ">
           <div style="font-weight: bold; font-size: 14px; margin-bottom: 6px;">${title}</div>
           <div style="font-size: 12px; color: #666; margin-bottom: 8px;">${roadAddress}</div>
           ${imageWrapperHtml}
         </div>
       `,
+        borderColor: "transparent",
         disableAnchor: true,
-        borderWidth: 1,
+        borderWidth: 0,
+        backgroundColor: "transparent",
       });
 
       // 마우스 이벤트 등록
