@@ -99,9 +99,6 @@ export default function Header({ onCounselOpen }: Props) {
                 <div className='header-logo-sub'>{'in 대전'}</div>
             </div>
             <div className='header-right-box'>
-              <div className='header-counsel-bot'>
-                <Recorder/>
-              </div>
                 {(isMainPage || isUserPage) && <MyPageButton />}
             </div>
         </div>

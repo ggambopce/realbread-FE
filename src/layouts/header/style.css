@@ -98,31 +98,3 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
     filter: brightness(1.05); /* 약간 밝게 처리 */
 }
-
-
-
-.header-counsel-bot .emotion-icon{
-
-  transform-origin: center;
-  animation: float 3s ease-in-out infinite;
-}
-
-/* hover 시 튕김 효과 */
-.header-counsel-bot:hover .emotion-icon {
-  animation: bounce 0.6s ease-in-out;
-  transform: scale(1.1);
-  filter: brightness(1.08);
-}
-
-@keyframes float {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes bounce {
-  0%   { transform: translateY(0); }
-  30%  { transform: translateY(-8px); }
-  60%  { transform: translateY(4px); }
-  100% { transform: translateY(0); }
-}

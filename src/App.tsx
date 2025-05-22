@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom'
 import Container from './layouts/container'
 import Main from './views/Main'
 import UserP from './views/User'
-import EduBot from 'views/EduBot'
 import OAuth from 'views/Authentication/OAuth'
 import { MAIN_PATH } from './app-constants'
 import { USER_PATH } from './app-constants'
@@ -56,7 +55,6 @@ function App() {
           <Route path="/search/:searchWord" element={<Main />} />
           <Route path={USER_PATH(':userId')} element={ <UserP />}/>
           <Route path='/auth/oauth-response/:token/:expirationTime' element= {<OAuth/>} />
-          <Route path={EDUBOT_RECODER()} element={ <EduBot />} />
           <Route path= '*' element={<h1>404 Not Found</h1>} />
         </Route> 
         

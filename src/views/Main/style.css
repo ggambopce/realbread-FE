@@ -193,4 +193,27 @@
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
+
+  transform-origin: center;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* hover 시 튕김 효과 */
+.bakery-counsel-main-counsel-button:hover{
+  animation: bounce 0.6s ease-in-out;
+  transform: scale(1.1);
+  filter: brightness(1.08);
+}
+
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-8px); }
+  60%  { transform: translateY(4px); }
+  100% { transform: translateY(0); }
 }
