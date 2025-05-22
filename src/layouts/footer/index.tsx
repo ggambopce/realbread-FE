@@ -24,6 +24,8 @@ export default function Footer() {
                         <div className='icon logo-black-icon'></div>
                     </div>
                     <div className='footer-logo-text'>{'Real Bread'}</div>
+                    <div>{'|'}</div>
+                    <div className='footer-copyright'>{'Copyright © 2025 JINO. ALL RIGHTS RESERVED'}</div>
                 </div>
                 <div className='footer-link-box'>
                     <div className='footer-email-link'>{'ggambopce@gmail.com'}</div>
@@ -35,9 +37,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className='footer-bottom'>
-                <div className='footer-copyright'>{'Copyright © JINO. ALL RIGHTS RESERVED'}</div>
-            </div>
+            
         </div>
     </div>
   )

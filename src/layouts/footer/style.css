@@ -1,5 +1,5 @@
 #footer {
-    padding: 5px 80px;
+    padding: 10px 80px;
     background-color: rgba(55, 55, 55, 0.1);
 
     display: flex;
@@ -29,9 +29,9 @@
 .footer-logo-text {
     color: rgba(0, 0, 0, 0.7);
 
-    font-family: 'GimhaeGaya';
-    font-size: 20px;
-    font-weight: 400;
+    font-family: 'SangSangRock';
+    font-size: 24px;
+    font-weight: 100;
     line-height: 140%;
     letter-spacing: -0.4px;
 }
@@ -45,19 +45,16 @@
 .footer-email-link {
     color: rgba(0, 0, 0, 0.7);
 
-    font-family: 'GimhaeGaya';
-    font-size: 12px;
-    font-weight: 400;
+    font-family: 'SangSangRock';
+    font-size: 16px;
+    font-weight: 100;
 }
 
-.footer-bottom{
-
-}
 
 .footer-copyright {
     color: rgba(0, 0, 0, 0.7);
     
-    font-family: 'GimhaeGaya';
-    font-size: 12px;
-    font-weight: 400;
+    font-family: 'SangSangRock';
+    font-size: 16px;
+    font-weight: 100;
 }

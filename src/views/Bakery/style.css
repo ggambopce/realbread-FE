@@ -1,5 +1,5 @@
 #bakery-detail-wrapper {
-    padding: 30px 0;
+    padding: 10px 0;
 
     display: flex;
     justify-content: center;
@@ -30,7 +30,7 @@
 .bakery-detail-top-title {
     color: rgba(0, 0, 0, 1);
 
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 600;
     line-height: 140%;
 }
@@ -38,7 +38,7 @@
 .bakery-detail-top-road-address {
     color: rgba(0, 0, 0, 0.6);
 
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 140%;
 }

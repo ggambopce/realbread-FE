@@ -4,12 +4,20 @@
   font-weight: 400;
   font-style: normal;
 }
-
+/*김해 가야체*/
 @font-face {
   font-family: 'GimhaeGaya';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/GimhaeGayaR.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+/*정묵 바위체*/
+@font-face {
+    font-family: 'SangSangRock';
+    src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/SangSangRockOTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {

@@ -82,8 +82,19 @@ const NaverMap = forwardRef<NaverMapRef, NaverMapProps>(
         map,
         icon: {
           content: `
-            <div style="text-align: center;">
-              <img 
+            <div class="custom-marker" style="text-align: center;">
+              <style>
+                .custom-marker:hover .marker-icon {
+                  animation: floatUpDown 1s ease-in-out infinite;
+                }
+                @keyframes floatUpDown {
+                  0% { transform: translateY(0px); }
+                  50% { transform: translateY(-6px); }
+                  100% { transform: translateY(0px); }
+                }
+              </style>
+              <img
+                class="marker-icon" 
                 src="${bakeryMarker}" 
                 style="width: 30px; height: 30px; display: block; margin: 0 auto;" 
               />

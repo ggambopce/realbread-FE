@@ -88,10 +88,10 @@ export default function Header() {
     <div id='header'>
         <div className='header-container'>
             <div className='header-left-box' onClick={onLogoClickHandler}>
-                <div className='icon-box'>
+                <div className='header-icon-box'>
                     <div className='icon logo-edu-icon'></div>
                 </div>
-                <div className='header-logo'>{'Real Bread'}</div>
+                <div className='header-logo'>{'진짜빵집'}</div>
             </div>
             <div className='header-right-box'>
               <div className='header-counsel-bot'>
