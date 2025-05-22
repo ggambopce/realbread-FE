@@ -14,6 +14,7 @@ import BakeryDetailItem from 'types/interface/bakery-detail-item.interface'
 import { useNavigate, useParams } from 'react-router-dom'
 import { MAIN_PATH } from 'app-constants'
 import { GetPopularListResponseDto, GetRelationListResponseDto } from 'apis/response/search'
+import ChatBot from 'views/ChatBot'
 
 //          component: 메인 화면 컴포넌트           //
 export default function Main() {
@@ -25,6 +26,8 @@ export default function Main() {
 
   //          state: 빵집 상세 패널 상태           //
   const [showDetail, setShowDetail] = useState(false);
+  //          state: 빵집 상담 패널 상태           //
+  const [showCounsel, setShowCounsel] = useState(false);
   //          state: 빵집 상세 정보 상태           //
   const [detailBakery, setDetailBakery] = useState<BakeryDetailItem | null>(null);
 
@@ -227,7 +230,7 @@ export default function Main() {
     </div>
   </div>
 
-  {/* 오른쪽 지도 */}
+  {/* 중앙 지도 */}
   <div className="main-map">
     <NaverMap ref={mapRef} bakeryList={totalList} onMarkerClick={onMarkerClickHandler}/>
   </div>
@@ -242,8 +245,15 @@ export default function Main() {
       />
     </div>
   </div>  
-    
   )}
+
+  {/* 왼쪽 상담 봇 채팅 패널 */}
+  <div className='bakery-counsel-bot-panel-wrapper'>
+    <div className='bakery-counsel-bot-panel'>
+      <ChatBot onClose={() => setShowCounsel(false)} />
+    </div>
+  </div>
+
 </div>
   )
 }

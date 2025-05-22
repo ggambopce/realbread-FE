@@ -5,6 +5,8 @@ import { ResponseDto } from "./response";
 import { GetCommentListResponseDto, PostCommentResponseDto } from "./response/comment";
 import { PostCommentRequestDto } from "./request/comment";
 import { GetPopularListResponseDto, GetRelationListResponseDto } from "./response/search";
+import { PostCounselTextRequestDto } from "./request/chatBot";
+import { PostCounselTextResponseDto } from "./response/chatBot";
 
 const DOMAIN = 'http://localhost:8080';
 
@@ -161,4 +163,20 @@ export const getRelationListRequest = async (searchWord: string) => {
             return responseBody;
         });
     return result; 
+}
+
+const POST_COUNSEL_TEXT_URL = () => `${API_DOMAIN}/edu-bot/counsel/text`;
+
+export const postCounselTextRequest = async (requestBody: PostCounselTextRequestDto) => {
+    const result = await axios.post(POST_COUNSEL_TEXT_URL(), requestBody)
+        .then(response => {
+            const responseBody: PostCounselTextResponseDto = response.data;
+            return responseBody;
+        })
+        .catch(error => {
+            if (!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        });
+    return result;
 }
