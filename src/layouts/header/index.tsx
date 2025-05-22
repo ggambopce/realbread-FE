@@ -8,8 +8,12 @@ import { useCookies } from 'react-cookie';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import useLoginUserStore from 'stores/login-user.store';
 
+interface Props {
+  onCounselOpen: () => void;
+}
+
 //          component: Header 레이아웃          //
-export default function Header() {
+export default function Header({ onCounselOpen }: Props) {
 
   //          state: 로그인 유저 상태         //
   const {loginUser, setLoginUser, resetLoginUser} = useLoginUserStore();
@@ -24,8 +28,8 @@ export default function Header() {
   //          state: 메인 페이지 상태          //
   const [isMainPage, setMainPage] = useState<boolean>(false);
   //          state: 유저 페이지 상태          //
-  const [isUserPage, setUserPage] = useState<boolean>(false);  
-
+  const [isUserPage, setUserPage] = useState<boolean>(false); 
+  
 
   //          function: 네비게이트 함수           //
     const navigator = useNavigate();
@@ -92,6 +96,7 @@ export default function Header() {
                     <div className='icon logo-edu-icon'></div>
                 </div>
                 <div className='header-logo'>{'진짜빵집'}</div>
+                <div className='header-logo-sub'>{'in 대전'}</div>
             </div>
             <div className='header-right-box'>
               <div className='header-counsel-bot'>

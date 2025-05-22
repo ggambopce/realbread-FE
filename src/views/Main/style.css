@@ -151,10 +151,10 @@
   box-sizing: border-box;
   padding: 20px;
 
-
 }
 
 .bakery-counsel-bot-panel-wrapper{
+  
   position: fixed;
   top: 95px;
   right: 10px;
@@ -174,5 +174,23 @@
   height: 100%;
   overflow-y: auto;
   box-sizing: border-box;
-  padding: 20px;
+  
+}
+
+.bakery-counsel-main-counsel-button-box {
+  position: fixed;         /* 항상 고정 */
+  top: 14px;
+  right: 30px;            /* Header 내부처럼 보이게 */
+  z-index: 999;            /* 헤더 위로 */
+}
+
+.bakery-counsel-main-counsel-button {
+  width: 48px;
+  height: 48px;
+  border: none;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
 }

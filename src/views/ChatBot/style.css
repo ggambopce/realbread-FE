@@ -1,0 +1,186 @@
+#bakery-counsel-bot-chat-wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Noto Sans KR', sans-serif;
+    
+    
+}
+
+.bakery-counsel-bot-chat-top {
+    padding: 20px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bakery-counsel-bot-chat-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.bakery-counsel-bot-chat-middle {
+    flex: 1;
+    overflow-y: auto;
+    height: 100%;
+    padding: 20px;
+
+    background-color: rgba(55, 55, 55, 0.1);
+    
+}
+
+.bakery-counsel-bot-chat-counsel-box {
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.bakery-counsel-bot-chat-counsel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+
+}
+.bakery-counsel-bot-chat-counsel-container > .chat-bubble.user {
+  align-self: flex-end; /* 사용자 메시지는 오른쪽 */
+}
+
+
+.bakery-counsel-bot-chat-bottom{
+    
+}
+
+.bakery-counsel-bot-chat-input-box {
+    
+    padding: 1px 10px;
+
+    
+}
+
+.bakery-counsel-bot-chat-input-container {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.bakery-counsel-bot-chat-textarea {
+    border: none;
+    outline: none;
+    background: none;
+    resize: none;
+
+    overflow: hidden;
+
+    color: rgba(0, 0, 0, 1);
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+/* 감정 아이콘 스타일 */
+.chat-emotion-icon {
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+/* 텍스트 + 아이콘 정렬 */
+.chat-emotion-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.chat-emotion-label {
+    font-size: 12px;
+    color: #666;
+}
+
+.chat-bubble {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.chat-bubble.user {
+  align-self: flex-end;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  color: #333;
+  border-bottom-right-radius: 0;
+  
+}
+
+.chat-bubble.bot {
+  align-self: flex-start;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  color: #111;
+  border-bottom-left-radius: 0;
+}
+
+/* === 영어 Emotion enum 기준 클래스 === */
+.REJECT { background-image: url(assets/거부.png); }
+.THINKING { background-image: url(assets/고민중.png); }
+.ANGRY_DISAGREE { background-image: url(assets/그건아니지화남.png); }
+.SORRY_POSITIVE { background-image: url(assets/긍적긍적미안.png); }
+.EXCITED { background-image: url(assets/기대만발.png); }
+.BASIC_SMILE { background-image: url(/assets/기본스마일.png); }
+.SENSE_MAN { background-image: url(assets/나센스있는데.png); }
+.ANNOYED { background-image: url(assets/나짜증.png); }
+.DUMBFOUNDED { background-image: url(assets/나황당.png); }
+.AWKWARD { background-image: url(assets/난감한표정.png); }
+.VERY_SORRY { background-image: url(assets/너무미안.png); }
+.LOVE_HAPPY { background-image: url(assets/너무좋아사랑.png); }
+.SURPRISED { background-image: url(assets/놀래키기.png); }
+.CRUSH { background-image: url(assets/누군가를좋아함.png); }
+.SWEET_YUMMY { background-image: url(assets/달콤하고맛있어.png); }
+.SHAKING { background-image: url(assets/덜덜무서움.png); }
+.THUMBS_UP { background-image: url(assets/따봉좋아.png); }
+.SWEAT_EMBARRASSED { background-image: url(assets/땀삐질당황.png); }
+.SMART { background-image: url(assets/똑똑이.png); }
+.SORRY { background-image: url(assets/미안.png); }
+.WISH { background-image: url(assets/바램.png); }
+.EXCITED_BLOW { background-image: url(assets/뿌뿌신난다.png); }
+.SAD_POUT { background-image: url(assets/삐짐슬픔.png); }
+.LOVE_HEART { background-image: url(assets/사랑고백하트.png); }
+.BIRTHDAY { background-image: url(assets/생일축하.png); }
+.FINGER_BLAME { background-image: url(assets/손가락비난.png); }
+.SHY_HELLO { background-image: url(assets/수줍은안녕.png); }
+.SHY_SMILE { background-image: url(assets/수줍은웃음.png); }
+.SHY_HEART { background-image: url(assets/수줍은하트.png); }
+.SHY_LOVE_HEBUL { background-image: url(assets/수줍은헤벌레사랑.png); }
+.HATE { background-image: url(assets/싫어.png); }
+.SERIOUS { background-image: url(assets/심각한고민.png); }
+.ANGRY_ARGUE { background-image: url(assets/싸우고싶은화남.png); }
+.FIGHT { background-image: url(assets/싸우자.png); }
+.HELLO { background-image: url(assets/안녕.png); }
+.CURIOUS { background-image: url(assets/오궁금.png); }
+.START_COOK { background-image: url(assets/요리시작.png); }
+.COOKING { background-image: url(assets/요리중.png); }
+.DENY_BLAME { background-image: url(assets/우거절비난.png); }
+.PROUD { background-image: url(assets/우쭐나최고.png); }
+.DANGER_STOP { background-image: url(assets/위험해멈춰.png); }
+.TEMPTING { background-image: url(assets/유혹.png); }
+.WORRIED { background-image: url(assets/으악걱정돼.png); }
+.NARCISSISM { background-image: url(assets/자아도취.png); }
+.SLEEPY { background-image: url(assets/졸림.png); }
+.GOOD_IDEA { background-image: url(assets/좋은아이디어.png); }
+.FOCUS { background-image: url(assets/집중해.png); }
+.SEARCHING { background-image: url(assets/찾는중.png); }
+.GIGGLE { background-image: url(assets/키득키득.png); }
+.DRINK { background-image: url(assets/한잔해.png); }
+.LOVE_HEBUL { background-image: url(assets/헤벌레사랑에빠짐.png); }
+.LISTEN_ANGRY { background-image: url(assets/화나는데들어봄.png); }
+.SAD_CRIES { background-image: url(assets/훌쩍슬픔.png); }

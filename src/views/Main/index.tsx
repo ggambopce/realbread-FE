@@ -45,6 +45,7 @@ export default function Main() {
   //          state: 관련 검색어 리스트 상태          //
   const [relativeWordList, setRelationWordList] = useState<string[]>([]);
 
+
   //          function: get popular list response 처리 함수          //
   const getPopularListResponse = (responseBody: GetPopularListResponseDto | ResponseDto | null) => {
     if (!responseBody) return;
@@ -154,7 +155,7 @@ export default function Main() {
       });
   };
 
-  //          event handler: 빵집 이름 클릭 이벤트 처리           //
+  //          event handler: 조회 방법 클릭 이벤트 처리           //
   const handleSortClick = (sortType: 'favorite' | 'review' | '') => {
   getBakeryMainListRequest(sortType)
     .then(response => {
@@ -162,7 +163,11 @@ export default function Main() {
       const { mainBakeryList } = response as GetBakeryMainListResponseDto;
       setTotalList(mainBakeryList);
     });
-};
+  };
+  //          event handler: 상담 봇 클릭 이벤트 처리           //
+  const handleCounselOpen = () => {
+    setShowCounsel(true);
+  };
   
   //          effect: search word 상태 변경 시 실행될 함수          //
   useEffect(() => {
@@ -178,7 +183,8 @@ export default function Main() {
   
   //          render: 메인 화면 컴포넌트 렌더링          //
   return (
-    <div className="main-wrapper">
+  
+  <div className="main-wrapper">
   {/* 왼쪽 사이드바 */}
   <div className="main-sidebar">
     <div className='bakery-search-box'>
@@ -247,13 +253,17 @@ export default function Main() {
   </div>  
   )}
 
-  {/* 왼쪽 상담 봇 채팅 패널 */}
+  {/* 오른쪽 상담 봇 채팅 패널 */}
+  {showCounsel && (
   <div className='bakery-counsel-bot-panel-wrapper'>
     <div className='bakery-counsel-bot-panel'>
       <ChatBot onClose={() => setShowCounsel(false)} />
     </div>
   </div>
-
+  )}
+  <div className='bakery-counsel-main-counsel-button-box'>
+    <button className="bakery-counsel-main-counsel-button BASIC_SMILE" onClick={() => setShowCounsel(true)} />
+  </div>
 </div>
   )
 }
