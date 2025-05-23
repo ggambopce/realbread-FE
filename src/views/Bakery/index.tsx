@@ -13,6 +13,7 @@ import { usePagination } from 'hooks';
 import { getCommentListRequest, getFavoriteListRequest, postCommentRequest, putFavoriteRequest } from 'apis';
 import { GetCommentListResponseDto, PostCommentResponseDto } from 'apis/response/comment';
 import { PostCommentRequestDto } from 'apis/request/comment';
+import VisitChart from 'components/visitChart';
 
 interface Props {
   bakery: BakeryDetailItem;
@@ -171,8 +172,10 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
                 <div className='icon close-icon'></div>
                 </div>
             </div>
-            <div className='bakery-detail-top-road-address'>{bakery.roadAddress}</div>
-            
+            <div className='bakery-detail-top-road-address'>{bakery.roadAddress}</div>    
+          </div>
+          <div className='bakery-detail-statistics-box'>
+            <VisitChart bakeryId={bakery.bakeryNumber} />
           </div>
           <div className='bakery-detail-button-box'>
             <div className='bakery-detail-button-group'>

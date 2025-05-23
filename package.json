@@ -19,6 +19,7 @@
     "react-cookie": "^8.0.1",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.4.0",
+    "recharts": "^2.15.3",
     "zustand": "^5.0.4"
   },
   "devDependencies": {

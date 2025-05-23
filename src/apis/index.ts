@@ -7,6 +7,7 @@ import { PostCommentRequestDto } from "./request/comment";
 import { GetPopularListResponseDto, GetRelationListResponseDto } from "./response/search";
 import { PostCounselTextRequestDto } from "./request/chatBot";
 import { PostCounselTextResponseDto } from "./response/chatBot";
+import { GetVisitStatsResposeDto } from "./response/statistics";
 
 const DOMAIN = 'http://localhost:8080';
 
@@ -166,11 +167,26 @@ export const getRelationListRequest = async (searchWord: string) => {
 }
 
 const POST_COUNSEL_TEXT_URL = () => `${API_DOMAIN}/edu-bot/counsel/text`;
+const GET_BAKERY_VISITSTATS_URL = (bakeryNumber: number | string) => `${API_DOMAIN}/bakery/${bakeryNumber}/visit-stats`
 
 export const postCounselTextRequest = async (requestBody: PostCounselTextRequestDto) => {
     const result = await axios.post(POST_COUNSEL_TEXT_URL(), requestBody)
         .then(response => {
             const responseBody: PostCounselTextResponseDto = response.data;
+            return responseBody;
+        })
+        .catch(error => {
+            if (!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        });
+    return result;
+}
+
+export const getBakeryVisitStatsRequest = async (bakeryNumber: number | string) => {
+    const result = await axios.get(GET_BAKERY_VISITSTATS_URL(bakeryNumber))
+        .then(response => {
+            const responseBody: GetVisitStatsResposeDto = response.data;
             return responseBody;
         })
         .catch(error => {
