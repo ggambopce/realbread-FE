@@ -16,7 +16,7 @@ export default function OAuth() {
     if (!token || !expirationTime) return;
 
     const now = (new Date().getTime());
-    const expires = new Date(now + Number(expirationTime));
+    const expires = new Date(now + 1000 * 60 * 60 * 24);
 
     const isProd = process.env.NODE_ENV === 'production';
 

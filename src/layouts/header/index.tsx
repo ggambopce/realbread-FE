@@ -1,8 +1,7 @@
 import './style.css'
-import { SNS_SIGN_IN_URL } from 'apis';
+import { getSignInUserRequest, SNS_SIGN_IN_URL } from 'apis';
 import { AUTH_PATH, MAIN_PATH, USER_PATH } from 'app-constants';
 import kakaoLoginButton from 'assets/image/kakao-login-button.png'
-import Recorder from 'components/edubotRecoder';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -72,6 +71,7 @@ export default function Header({ onCounselOpen }: Props) {
     return <img src={kakaoLoginButton} onClick={onSnsSignInButtonClickHandler} className = 'kakao-login-button' />;
   
   }
+
   //          effect: pathname이 변경될 떄 마다 실행될 함수            //
     useEffect(() => {
         const isAuthPage = pathname.startsWith(AUTH_PATH());

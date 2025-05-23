@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 import './style.css';
 import GetVisitStatsResposeDto, { VisitDailyStat } from 'apis/response/statistics/getVisitStats.response.dto';
 import { getBakeryVisitStatsRequest } from 'apis';
@@ -67,13 +67,18 @@ export default function VisitChart({ bakeryId }: Props) {
 
     <div id='bakery-detail-visit-statistic-warapper'>
         <div className='bakery-detail-visit-statistic-grap'>
-            <div className='icon-button' onClick={onShowChartClickHandler}>
+            <div className='bakery-detail-visit-statistic-grap-top-box'>
+                <div className='icon-button' onClick={onShowChartClickHandler}>
                 {showChart ? <div className='icon up-light-icon'></div> : <div className='icon down-light-icon'></div>}
-            </div> 
+                </div>
+                <div className='bakery-detail-visit-statistic-grap-top-title'>{"Daily Visit Trend"}</div>
+            </div>
+            
+            
             {showChart &&
             <div style={{ width: '100%', height: 300 }}>
                 <ResponsiveContainer width="100%" height="100%">
-                    <BarChart 
+                    <LineChart 
                         data={data}
                         margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
                     >
@@ -87,8 +92,8 @@ export default function VisitChart({ bakeryId }: Props) {
                         />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="count" fill="#8884d8" />
-                    </BarChart>
+                    <Line dataKey="count" fill="#8884d8" />
+                    </LineChart>
                 </ResponsiveContainer>
             </div>
             }
