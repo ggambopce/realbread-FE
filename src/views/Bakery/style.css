@@ -149,21 +149,35 @@
 }
 
 .bakery-detail-comment-choice-menu-input-box{
-
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
+
+
 .bakery-detail-comment-input-box {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 20px;
+
+    padding: 5px 5px;
+}
+
+.menu-choice-toggle-group {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 0;
+    gap: 8px;
 }
 
 .bakery-detail-comment-input-container {
+    border: 1px solid rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding: 5px;
 }
 
 .bakery-detail-comment-textarea {
+    width: 100%;
     border: none;
     outline: none;
     background: none;

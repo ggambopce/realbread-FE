@@ -193,7 +193,7 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
               <div className='icon-button'>
                 <div className='icon comment-icon'></div>
               </div>
-              <div className='bakery-detail-button-text'>{`댓글 ${totalCommentCount}`}</div>
+              <div className='bakery-detail-button-text'>{`리뷰 ${totalCommentCount}`}</div>
               <div className='icon-button' onClick={onShowCommentClickHandler}>
                 {showComment ? <div className='icon up-light-icon'></div> : <div className='icon down-light-icon'></div>}
               </div>
@@ -212,7 +212,7 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
           {showComment &&
           <div className='bakery-detail-comment-box'>
             <div className='bakery-detail-comment-container'>
-            <div className='bakery-detail-comment-title'>{'댓글 '}<span className='emphasis'>{totalCommentCount}</span></div>
+            <div className='bakery-detail-comment-title'>{'리뷰 '}<span className='emphasis'>{totalCommentCount}</span></div>
             <div className='bakery-detail-comment-list-container'>
               {viewList.map(item => <CommentItem commentListItem={item} />)}
             </div>
@@ -228,30 +228,30 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
 
             />
             </div>
-            <div className="menu-choice-toggle-group">
-              {[...new Set(bakery.menuList.map(menu => menu.menuName))].map(name => (
-                <button
-                  key={name}
-                  className={`menu-toggle-button ${selectedMenuName === name ? 'selected' : ''}`}
-                  onClick={() => setSelectedMenuName(name)}
-                >
-                  {name}
-                </button>
-              ))}
-            </div>
             {loginUser !== null && 
             <div className='bakery-detail-comment-input-box'>
+              <div className="menu-choice-toggle-group">
+                {[...new Set(bakery.menuList.map(menu => menu.menuName))].map(name => (
+                  <button
+                    key={name}
+                    className={`menu-toggle-button ${selectedMenuName === name ? 'selected' : ''}`}
+                    onClick={() => setSelectedMenuName(name)}
+                  >
+                    {name}
+                  </button>
+                ))}
+              </div>
               <div className='bakery-detail-comment-input-container'>
                 <textarea  className='bakery-detail-comment-textarea' placeholder='추천 메뉴와 리뷰를 작성해주세요.' value={comment} onChange={onCommentChangeHandler}/>
                 <div className='bakery-detail-comment-button-box'>
-                  <div className= {comment === '' ? 'disable-button' : 'black-button'} onClick={onCommentSubmitButtonClickHandler}>{'댓글달기'}</div>
+                  <div className= {comment === '' ? 'disable-button' : 'black-button'} onClick={onCommentSubmitButtonClickHandler}>{'리뷰작성'}</div>
                 </div>
               </div>
             </div>
             }
             </div>
           </div>
-}
+        }
           <div className='bakery-detail-menu-box'>
           <div className='divider'></div>
             {bakery?.menuList.map(menu => (

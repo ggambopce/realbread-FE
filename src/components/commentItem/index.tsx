@@ -24,11 +24,6 @@ export default function CommentItem({ commentListItem }: Props) {
     //          state: 댓글 textarea 참조 상태           //
     const commentRef = useRef<HTMLTextAreaElement | null>(null);
 
-    //          state: 페이지네이션 관련 상태           //
-    const {
-      currentPage, currentSection, viewList, viewPageList, totalSection,
-      setCurrentPage, setCurrentSection, setTotalList,
-    } = usePagination<CommentListItemType>(3);
 
     //          state: 댓글 상자 보기 상태          //
     const [showComment, setShowComment] = useState<boolean>(false);

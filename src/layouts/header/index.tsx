@@ -35,7 +35,13 @@ export default function Header({ onCounselOpen }: Props) {
 
     //          event handler: 로고 클릭 이벤트 처리 함수           //
     const onLogoClickHandler = () => {
-        navigator(MAIN_PATH());
+        if (pathname === MAIN_PATH()) {
+          // 현재가 메인 페이지면 새로고침
+          window.location.reload();
+        } else {
+          // 아니면 메인 페이지로 이동
+          navigator(MAIN_PATH());
+        }
     }
  
   //          component: 마이페이지 버튼 컴포넌트          //
@@ -44,12 +50,12 @@ export default function Header({ onCounselOpen }: Props) {
     //          state: userId path variable 상태         //
       const { userId } = useParams();
 
-    //          event handler:  마이페이지 버튼 클릭 이벤트 처리 함수           //
-    const onMyPageButtonClickHandler = () => {
-        if (!loginUser) return;
-        const {userId} = loginUser;
-        navigator(USER_PATH(userId));
-    };
+    // //          event handler:  마이페이지 버튼 클릭 이벤트 처리 함수           //
+    // const onMyPageButtonClickHandler = () => {
+    //     if (!loginUser) return;
+    //     const {userId} = loginUser;
+    //     navigator(USER_PATH(userId));
+    // };
     //          event handler:  로그아웃 버튼 클릭 이벤트 처리 함수           //
     const onSignOutButtonClickHandler = () => {
         resetLoginUser();
@@ -62,11 +68,11 @@ export default function Header({ onCounselOpen }: Props) {
     };
 
     //          render: 로그아웃 버튼 컴포넌트 렌더링         //
-    if (isLogin && userId === loginUser?.userId.toString())
-    return <div className='white-button' onClick={onSignOutButtonClickHandler}>{'로그아웃'}</div>;
-    //          render: 마이페이지 버튼 컴포넌트 렌더링         //
     if (isLogin)
-    return <div className='white-button' onClick={onMyPageButtonClickHandler}>{'마이페이지'}</div>;
+    return <div className='white-button' onClick={onSignOutButtonClickHandler}>{'로그아웃'}</div>;
+    // //          render: 마이페이지 버튼 컴포넌트 렌더링         //
+    // if (isLogin)
+    // return <div className='white-button' onClick={onMyPageButtonClickHandler}>{'마이페이지'}</div>;
     //          render: 로그인 버튼 컴포넌트 렌더링         //
     return <img src={kakaoLoginButton} onClick={onSnsSignInButtonClickHandler} className = 'kakao-login-button' />;
   

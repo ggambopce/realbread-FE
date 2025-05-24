@@ -139,3 +139,20 @@
   height: 100%;              /* 부모가 제한하면 직접 지정 */
      
 }
+
+
+.mic-icon,
+.chat-icon {
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+  margin-left: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.mic-icon:hover,
+.chat-icon:hover {
+  color: black;
+  transform: scale(1.1);
+}

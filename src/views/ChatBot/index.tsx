@@ -70,6 +70,7 @@ const emotionMap: Record<string, string> = {
 //          component: 상담 봇 채팅 패널 컴포넌트          //
 export default function ChatBot({onClose}: Props) {
     
+    
     //          state: 채팅 로그 상태          //
     const [chatLog, setChatLog] = useState<
     { sender: 'user' | 'bot'; message: string; emotion?: string }[]
