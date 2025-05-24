@@ -65,9 +65,12 @@ export default function Main() {
     if (code !== 'SU') return;
 
     if (!searchWord) return;
-    const {searchList} = responseBody as GetBakerySearchListResponseDto;
-    setTotalList(searchList);
-    setCount(searchList.length);
+    const {mainBakeryList} = responseBody as GetBakerySearchListResponseDto;
+
+    
+
+    setTotalList(mainBakeryList);
+    setCount(mainBakeryList.length);
     setPreSearchWord(searchWord);
   }
 

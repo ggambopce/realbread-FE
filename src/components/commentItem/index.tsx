@@ -128,19 +128,12 @@ export default function CommentItem({ commentListItem }: Props) {
                         <div className='comment-list-item-choice-menu-image' style={{ backgroundImage: `url(${choiceMenuImage})` }}></div>
                         <div className='comment-list-item-menu'>{choiceMenu}</div>
                     </div>
-                    <div className='comment-list-item-content'>{content}</div>
-                </div>
-                <div className='comment-list-item-bottom'>
-                    <div className='comment-list-item-input-box'>
-                        <div className='comment-list-item-input-container'>
-                        <textarea ref={commentRef} className='comment-list-item-textarea' placeholder='댓글을 작성해주세요.' value={comment} onChange={onCommentChangeHandler} />
-                        <div className='comment-list-item-button-box'>
-                            <div className= {comment === '' ? 'disable-button' : 'black-button'} onClick={onCommentSubmitButtonClickHandler}>{'댓글달기'}</div>
-                        </div>
-                        </div>
-                    </div>
-          
-                </div>
+                </div>    
+                    <div className='comment-list-item-main'>
+                       <div className='comment-list-item-content'>{content}</div>
+                    </div> 
+                   
+                
             </div>
         </div>
     )
