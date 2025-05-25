@@ -14,6 +14,8 @@ import { getCommentListRequest, getFavoriteListRequest, postCommentRequest, putF
 import { GetCommentListResponseDto, PostCommentResponseDto } from 'apis/response/comment';
 import { PostCommentRequestDto } from 'apis/request/comment';
 import VisitChart from 'components/visitChart';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
 
 interface Props {
   bakery: BakeryDetailItem;
@@ -122,7 +124,7 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
       if (!loginUser || !cookies.accessToken || !bakery.bakeryNumber) return;
       putFavoriteRequest(bakery.bakeryNumber, cookies.accessToken).then(putFavoriteResponse);
 
-    }
+    } 
     //          event handler: 좋아요 상자 보기 클릭 이벤트 처리           //
     const onShowFavoriteClickHandler = () => {
       setShowFavorite(!showFavorite);
@@ -191,7 +193,8 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
             </div>
             <div className='bakery-detail-button-group'>
               <div className='icon-button'>
-                <div className='icon comment-icon'></div>
+                <FontAwesomeIcon icon={faCommentDots} />
+                
               </div>
               <div className='bakery-detail-button-text'>{`리뷰 ${totalCommentCount}`}</div>
               <div className='icon-button' onClick={onShowCommentClickHandler}>
@@ -252,8 +255,8 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
             </div>
           </div>
         }
+        <div className='divider'></div>
           <div className='bakery-detail-menu-box'>
-          <div className='divider'></div>
             {bakery?.menuList.map(menu => (
               <div className='bakery-detail-menu-item' key={menu.menuNumber}>
                 <div className='bakery-detail-menu-info'>

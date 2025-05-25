@@ -1,10 +1,10 @@
 #header {
     padding: 5px 80px;
-    background-color: rgba(55, 55, 55, 0.1);
-
+    background-color: #fbfbfb;
     display: flex;
     justify-content: space-between;
-
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
@@ -24,13 +24,13 @@
     cursor: pointer;
 }
 
-.header-icon-box{
+.header-icon-box {
     width: 40px;
-  height: 40px;
+    height: 40px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-logo {
@@ -43,7 +43,7 @@
     letter-spacing: 3px;
 }
 .header-logo-sub {
-  color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 1);
     padding: 5px;
     font-family: 'SangSangRock';
     font-size: 30px;
@@ -56,7 +56,6 @@
     display: flex;
     align-items: center;
     gap: 15px;
-
 }
 
 .header-search-input-box {
@@ -86,15 +85,41 @@
 }
 
 .kakao-login-button {
-    height: 35px;
+    height: 32px;
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
     transition: transform 0.2s ease;
 }
-  
+
 .kakao-login-button:hover {
     transform: scale(1.05); /* 살짝 커지는 효과 */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
     filter: brightness(1.05); /* 약간 밝게 처리 */
+}
+
+.header-button {
+    width: auto;
+    height: 32px;
+    padding: 2px 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #333333;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+    div {
+        padding-left: 10px;
+    }
+}
+
+.header-button:hover {
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
 }

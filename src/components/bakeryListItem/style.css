@@ -1,10 +1,10 @@
 .bakery-list-item {
     padding: 20px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .bakery-list-item:hover {
@@ -12,7 +12,6 @@
 }
 
 .bakery-list-item-main-box {
-   
 }
 
 .bakery-list-item-top {
@@ -21,7 +20,7 @@
     align-items: center;
     gap: 4px;
 }
- 
+
 .bakery-list-item-title {
     color: rgba(0, 0, 0, 1);
 
@@ -29,7 +28,6 @@
     font-weight: 600;
     line-height: 140%;
     transition: color 0.2s ease;
-    
 }
 
 .bakery-list-item-title:hover {
@@ -37,7 +35,7 @@
     color: #007aff;
 }
 
-.link-icon-box{
+.link-icon-box {
     width: 20px;
     height: 20px;
     display: flex;
@@ -45,7 +43,7 @@
     justify-content: center;
 }
 
-.bakery-list-item-link-icon{
+.bakery-list-item-link-icon {
     cursor: pointer;
     width: 20px;
     height: 20px;
@@ -63,8 +61,9 @@
 }
 
 .bakery-list-item-roadaddress {
-    font-size: 15px;
-    font-weight: 450;
+    color: rgba(14, 14, 14, 0.6);
+    font-size: 13px;
+    font-weight: 500;
     line-height: 140%;
 
     cursor: pointer;
@@ -72,7 +71,6 @@
 
 .bakery-list-item-link {
     cursor: pointer;
-
 }
 
 .bakery-list-item-counts {
@@ -81,7 +79,6 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 140%;
-
 }
 
 .bakery-list-item-image-box {
@@ -91,7 +88,6 @@
 }
 
 .bakery-list-item-image {
-    
     width: 80px;
     height: 80px;
 
