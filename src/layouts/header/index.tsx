@@ -8,6 +8,7 @@ import { useCookies } from 'react-cookie';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import useLoginUserStore from 'stores/login-user.store';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faArrowRightFromBracket, faArrowRightToBracket, faHeadset } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
     onCounselOpen: () => void;
@@ -44,17 +45,9 @@ export default function Header({ onCounselOpen }: Props) {
         }
     };
 
-    //          component: 마이페이지 버튼 컴포넌트          //
-    const MyPageButton = () => {
-        //          state: userId path variable 상태         //
-        const { userId } = useParams();
-
-        // //          event handler:  마이페이지 버튼 클릭 이벤트 처리 함수           //
-        // const onMyPageButtonClickHandler = () => {
-        //     if (!loginUser) return;
-        //     const {userId} = loginUser;
-        //     navigator(USER_PATH(userId));
-        // };
+    //          component: 카카오 로그인 버튼 컴포넌트          //
+    const KakaoButton = () => {
+    
         //          event handler:  로그아웃 버튼 클릭 이벤트 처리 함수           //
         const onSignOutButtonClickHandler = () => {
             resetLoginUser();
@@ -69,15 +62,18 @@ export default function Header({ onCounselOpen }: Props) {
         //          render: 로그아웃 버튼 컴포넌트 렌더링         //
         if (isLogin)
             return (
-                <div className="white-button" onClick={onSignOutButtonClickHandler}>
-                    {'로그아웃'}
+       
+                <div className="header-button" onClick={onSignOutButtonClickHandler}>
+                    <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                    <div>로그아웃</div>
                 </div>
             );
-        // //          render: 마이페이지 버튼 컴포넌트 렌더링         //
-        // if (isLogin)
-        // return <div className='white-button' onClick={onMyPageButtonClickHandler}>{'마이페이지'}</div>;
         //          render: 로그인 버튼 컴포넌트 렌더링         //
-        return <img src={kakaoLoginButton} onClick={onSnsSignInButtonClickHandler} className="kakao-login-button" />;
+        return (
+        <div className="header-button" onClick={onSnsSignInButtonClickHandler}> 
+                        <FontAwesomeIcon icon={faArrowRightToBracket} />
+                        <div>카카오 로그인</div>
+                    </div>)
     };
 
     //          effect: pathname이 변경될 떄 마다 실행될 함수            //
@@ -100,9 +96,6 @@ export default function Header({ onCounselOpen }: Props) {
         <div id="header">
             <div className="header-container">
                 <div className="header-left-box" onClick={onLogoClickHandler}>
-                    {/* <div className='header-icon-box'>
-                    <div className='icon logo-edu-icon'></div>
-                </div> */}
                     <div className="header-icon-box">
                         <div className="icon logo-black-icon"></div>
                     </div>
@@ -110,15 +103,12 @@ export default function Header({ onCounselOpen }: Props) {
                     <div className="header-logo-sub">{'in 대전'}</div>
                 </div>
                 <div className="header-right-box">
-                    <div className="header-button">
-                        <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
-                        <div>카카오 로그인</div>
+                    
+                    <div className="header-button" onClick={onCounselOpen}>
+                        <FontAwesomeIcon icon={faHeadset} />
+                        <div>AI 상담 챗봇</div>
                     </div>
-                    <div className="header-button">
-                        <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
-                        <div>AI 도우미</div>
-                    </div>
-                    {/* {(isMainPage || isUserPage) && <MyPageButton />} */}
+                    {(isMainPage || isUserPage) && <KakaoButton />}
                 </div>
             </div>
         </div>

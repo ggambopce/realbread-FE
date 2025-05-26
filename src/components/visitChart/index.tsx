@@ -97,6 +97,7 @@ export default function VisitChart({ bakeryId }: Props) {
                                         return `${d.getMonth() + 1}.${d.getDate()}`;
                                     }}
                                     padding={{ left: 10, right: 10 }}
+                                    tick={{ fontSize: 12 }}
                                 />
                                 {/* <YAxis padding={{ top: 20 }} /> */}
                                 <Tooltip />

@@ -99,26 +99,6 @@ export default function Main() {
     const { mainBakeryList } = responseBody as GetBakeryMainListResponseDto;
     setTotalList(mainBakeryList); // 페이지네이션에 리스트 세팅
   }
-  //          function: get bakery main list by review response 처리 함수          //
-  const getBakeryMainListByReviewResponseDto = (responseBody: GetBakeryMainListResponseDto | ResponseDto | null) => {
-  if (!responseBody) return;
-  const { code } = responseBody;
-  if (code === 'DBE') alert('데이터베이스 오류입니다.')
-  if (code !== 'SU') return;
-
-  const { mainBakeryList } = responseBody as GetBakeryMainListResponseDto;
-  setTotalList(mainBakeryList);
-  }
-  //          function: get bakery main list by favorite response 처리 함수          //
-  const getBakeryMainListByFavoriteResponseDto = (responseBody: GetBakeryMainListResponseDto | ResponseDto | null) => {
-  if (!responseBody) return;
-  const { code } = responseBody;
-  if (code === 'DBE') alert('데이터베이스 오류입니다.')
-  if (code !== 'SU') return;
-
-  const { mainBakeryList } = responseBody as GetBakeryMainListResponseDto;
-  setTotalList(mainBakeryList);
-}
 
   //          function: get bakery detail response 처리 함수          //
   const getBakeryDetailResponse = (responseBody: GetBakeryDetailResponseDto | ResponseDto | null) => {
@@ -134,7 +114,6 @@ export default function Main() {
     setDetailBakery( detailBakery );
   }
 
-  
 
   //          event handler: 빵집 이름 클릭 이벤트 처리           //
   const onTitleClickHandler = (bakeryNumber: number) => {
@@ -167,10 +146,7 @@ export default function Main() {
       setTotalList(mainBakeryList);
     });
   };
-  //          event handler: 상담 봇 클릭 이벤트 처리           //
-  const handleCounselOpen = () => {
-    setShowCounsel(true);
-  };
+  
   
   //          effect: search word 상태 변경 시 실행될 함수          //
   useEffect(() => {
@@ -198,7 +174,6 @@ export default function Main() {
         <button className="sort-button" onClick={() => handleSortClick('favorite')}>좋아요순</button>
         <button className="sort-button" onClick={() => handleSortClick('review')}>댓글순</button>
       </div>
-
       {searchWord ? (
         <div className='search-contents-box'>
           {count === 0 ? (
@@ -264,9 +239,6 @@ export default function Main() {
     </div>
   </div>
   )}
-  <div className='bakery-counsel-main-counsel-button-box'>
-    <button className="bakery-counsel-main-counsel-button BASIC_SMILE" onClick={() => setShowCounsel(true)} />
-  </div>
 </div>
   )
 }

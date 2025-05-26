@@ -150,8 +150,6 @@ export default function ChatBot({onClose}: Props) {
                 <div className='bakery-counsel-bot-chat-title'>
                     {isVoiceMode ? '음성상담' : '채팅상담'}
                 </div>
-                <FontAwesomeIcon icon={faMicrophoneLines} className="mic-icon" onClick={() => setIsVoiceMode(true)}/>
-                <FontAwesomeIcon icon={faComments} className="chat-icon" onClick={() => setIsVoiceMode(false)}/>
                 <div className='icon-button' onClick={onCloseButtonClickHandler}>
                     <div className='icon close-icon'></div>
                 </div> 
@@ -184,7 +182,10 @@ export default function ChatBot({onClose}: Props) {
                 <div className='bakery-counsel-bot-chat-input-box'>
                     <div className='bakery-counsel-bot-chat-input-container'>
                         <textarea ref={chatQuestionRef} className='bakery-counsel-bot-chat-textarea' placeholder='무엇이든 물어보세요' value={chatQuestion} onChange={onChatQuestionChangeHandler} onKeyDown={onChatKeyDownHandler} disabled={isVoiceMode}/>
-                  
+                    </div>
+                    <div className='bakery-counsel-bot-change-icon'>
+                        <FontAwesomeIcon icon={faMicrophoneLines} className="mic-icon" onClick={() => setIsVoiceMode(true)}/>
+                        <FontAwesomeIcon icon={faComments} className="chat-icon" onClick={() => setIsVoiceMode(false)}/>
                     </div>
                 </div>
             </div> 

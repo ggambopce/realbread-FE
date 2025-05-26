@@ -66,7 +66,6 @@
     font-weight: 500;
     line-height: 140%;
 
-    cursor: pointer;
 }
 
 .bakery-list-item-link {
@@ -84,7 +83,7 @@
 .bakery-list-item-image-box {
     display: flex;
     gap: 8px;
-    margin-top: 12px;
+    
 }
 
 .bakery-list-item-image {

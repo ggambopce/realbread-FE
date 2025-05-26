@@ -16,6 +16,7 @@ import { PostCommentRequestDto } from 'apis/request/comment';
 import VisitChart from 'components/visitChart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
+import { faMapPin } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   bakery: BakeryDetailItem;
@@ -72,8 +73,9 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
       }
       const isFavorite = favoriteList.findIndex(favorite => favorite.email === loginUser.email) !== -1;
       setFavorite(isFavorite);
+
     }
-    //          function: get favorite response 처리 함수          //
+    //          function: put favorite response 처리 함수          //
     const putFavoriteResponse = (responseBody: PutFavoriteResponseDto | ResponseDto | null) => {
       if (!responseBody) return;
       const { code } = responseBody;
@@ -174,7 +176,7 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
                 <div className='icon close-icon'></div>
                 </div>
             </div>
-            <div className='bakery-detail-top-road-address'>{bakery.roadAddress}</div>    
+            <div className='bakery-detail-top-road-address'><FontAwesomeIcon icon={faMapPin} />&nbsp;{bakery.roadAddress}</div>    
           </div>
           <div className='bakery-detail-statistics-box'>
             <VisitChart bakeryId={bakery.bakeryNumber} />
@@ -193,8 +195,7 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
             </div>
             <div className='bakery-detail-button-group'>
               <div className='icon-button'>
-                <FontAwesomeIcon icon={faCommentDots} />
-                
+                <FontAwesomeIcon icon={faCommentDots} />       
               </div>
               <div className='bakery-detail-button-text'>{`리뷰 ${totalCommentCount}`}</div>
               <div className='icon-button' onClick={onShowCommentClickHandler}>

@@ -2,7 +2,8 @@ import { BakerySummary, MenuListItem } from 'types/interface/bakery-main-list.in
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart, faShareSquare } from '@fortawesome/free-regular-svg-icons';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { faLocationDot, faMapPin } from '@fortawesome/free-solid-svg-icons';
+
 
 interface Props {
     bakeryListItem: BakerySummary;
@@ -37,7 +38,7 @@ export default function BakeryListItem({ bakeryListItem, onTitleClick }: Props) 
                                 className="link-icon-box"
                                 onClick={() => onLinkClickHandler(link)}
                                 aria-label="홈페이지 이동">
-                                {/* <div className="icon link-icon"></div> */}
+                                
                                 &nbsp;&nbsp;
                                 <FontAwesomeIcon icon={faShareSquare} />
                             </div>
@@ -45,12 +46,15 @@ export default function BakeryListItem({ bakeryListItem, onTitleClick }: Props) 
                     )}
                 </div>
                 <div className="bakery-list-item-middle">
-                    <div className="bakery-list-item-roadaddress">{roadAddress}</div>
+                    <div className="bakery-list-item-roadaddress">
+                        <FontAwesomeIcon icon={faMapPin} />
+                        &nbsp;{roadAddress}</div>
                 </div>
                 <div className="bakery-list-item-bottom">
                     <div className="bakery-list-item-counts">
                         <FontAwesomeIcon icon={faComment} />
-                        &nbsp;리뷰 {commentCount} <FontAwesomeIcon icon={faHeart} />
+                        &nbsp;리뷰 {commentCount} 
+                        &nbsp;&nbsp;<FontAwesomeIcon icon={faHeart} />
                         &nbsp;좋아요 {favoriteCount}
                     </div>
                 </div>

@@ -27,7 +27,7 @@
     height: 100%;
     padding: 20px;
 
-    background-color: rgba(55, 55, 55, 0.1);
+    background-color:#fbfbfb;
     
 }
 
@@ -54,24 +54,34 @@
 
 .bakery-counsel-bot-chat-input-box {
     
-    padding: 1px 10px;
-
+    padding: 1px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
     
 }
+.bakery-counsel-bot-change-icon {
 
+}
 .bakery-counsel-bot-chat-input-container {
     display: flex;
     flex-direction: column;
     
+    
 }
 
 .bakery-counsel-bot-chat-textarea {
+  
     border: none;
     outline: none;
     background: none;
     resize: none;
 
     overflow: hidden;
+
+    padding-top: 25px;
+    
 
     color: rgba(0, 0, 0, 1);
 

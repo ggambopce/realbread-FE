@@ -2,6 +2,9 @@ import React from 'react';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faHouseLaptop } from '@fortawesome/free-solid-svg-icons';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+
 
 //          component: Footer 레이아웃          //
 export default function Footer() {
@@ -36,10 +39,10 @@ export default function Footer() {
                     <div className="footer-email-link">{'ggambopce@gmail.com'}</div>
                     <div className='footer-none'></div>
                     <div className="icon-button" onClick={onRandbIconButtonClickHandler}>
-                        <div className="icon randb-icon"></div>
+                        <FontAwesomeIcon icon={faHouseLaptop} />
                     </div>
                     <div className="icon-button" onClick={onYoutubeIconButtonClickHandler}>
-                        <div className="icon youtube-icon"></div>
+                        <FontAwesomeIcon icon={faYoutube} />
                     </div>
                 </div>
             </div>
