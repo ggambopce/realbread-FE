@@ -52,7 +52,16 @@ const NaverMap = forwardRef<NaverMapRef, NaverMapProps>(
           position: userPosition,
           map,
           icon: {
-            content: `<div style="background:#007bff;width:14px;height:14px;border-radius:50%;border:2px solid white;"></div>`,
+            content: `<div style="display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 32px;
+              height: 32px;
+              font-size: 36px;
+              color: #e02424;">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            `,
             anchor: new window.naver.maps.Point(10, 10),
           },
         });

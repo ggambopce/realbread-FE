@@ -83,7 +83,7 @@ export default function ChatBot({onClose}: Props) {
     //          state: 보내기 상태          //
     const [isSending, setIsSending] = useState<boolean>(false);
     //          state: 음성 모드 참조 상태           //
-    const [isVoiceMode, setIsVoiceMode] = useState(false);
+    const [isVoiceMode, setIsVoiceMode] = useState(true);
 
     //          event handler: 닫기 버튼 클릭 이벤트 처리           //
     const onCloseButtonClickHandler = () => {
