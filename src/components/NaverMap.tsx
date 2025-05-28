@@ -188,7 +188,7 @@ const NaverMap = forwardRef<NaverMapRef, NaverMapProps>(
 
         //마커 클릭 시 중심 이동
          map.panTo(new window.naver.maps.LatLng(lat, lng));
-      });
+      }); 
 
       return marker;
 
