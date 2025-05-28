@@ -61,6 +61,8 @@
 }
 
 .bakery-list-item-roadaddress {
+    padding: 4px 0px;
+
     color: rgba(14, 14, 14, 0.6);
     font-size: 13px;
     font-weight: 500;

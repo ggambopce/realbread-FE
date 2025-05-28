@@ -198,16 +198,3 @@
   transform: scale(1.1);
   filter: brightness(1.08);
 }
-
-@keyframes float {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes bounce {
-  0%   { transform: translateY(0); }
-  30%  { transform: translateY(-8px); }
-  60%  { transform: translateY(4px); }
-  100% { transform: translateY(0); }
-}
