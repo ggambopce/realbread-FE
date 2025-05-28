@@ -177,12 +177,6 @@
   
 }
 
-.bakery-counsel-main-counsel-button-box {
-  position: fixed;         /* 항상 고정 */
-  top: 14px;
-  right: 30px;            /* Header 내부처럼 보이게 */
-  z-index: 999;            /* 헤더 위로 */
-}
 
 .bakery-counsel-main-counsel-button {
   width: 48px;
