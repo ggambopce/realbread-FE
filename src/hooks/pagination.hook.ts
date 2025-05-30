@@ -55,9 +55,14 @@ const usePagination = <T>(countPerPage: number) => {
 
     }, [totalList]);
     //          effect: current page가 변경될 때마다 진행할 작업          //
-    useEffect(setView, [currentPage]);
+    useEffect(() => {
+        setView();
+    }, [currentPage, totalList]);
+
     //          effect: current section이 변경될 때마다 진행할 작업          //
-    useEffect(setViewPage, [currentPage]);
+    useEffect(() => {
+        setViewPage();
+    }, [currentSection, totalPageList]);
 
     return {
         currentPage,

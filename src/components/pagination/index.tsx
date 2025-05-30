@@ -19,6 +19,8 @@ export default function pagination(props: Props) {
     const { currentPage, currentSection, viewPageList, totalSection } = props;
     const { setCurrentPage, setCurrentSection } = props;
 
+    const PAGES_PER_SECTION = 5;
+
     //          event handler: 페이지 번호 클릭 이벤트 처리        //
     const onPageClickHandler = (page: number) => {
       setCurrentPage(page);
@@ -26,13 +28,15 @@ export default function pagination(props: Props) {
      //          event handler: 이전 클릭 이벤트 처리        //
      const onPreviousClickHandler = () => {
       if (currentSection === 1) return;
-      setCurrentPage((currentSection - 1) * 10);
+      const newSection = currentSection - 1;
+      setCurrentPage((newSection - 1) * PAGES_PER_SECTION + 1);
       setCurrentSection(currentSection - 1);
      }
      //          event handler: 다음 클릭 이벤트 처리        //
      const onNextClickHandler = () => {
       if (currentSection === totalSection) return;
-      setCurrentPage(currentSection * 10 + 1);
+      const newSection = currentSection + 1;
+      setCurrentPage((newSection - 1) * PAGES_PER_SECTION + 1);
       setCurrentSection(currentSection + 1);
      }
   
