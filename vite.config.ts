@@ -4,6 +4,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/realbread/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -22,9 +23,10 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:8080', // Spring Boot 서버 주소
-        changeOrigin: true
+      '/realbread/api': {
+        target: 'http://realbread-backend:8081', // Spring Boot 서버 주소
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/realbread\/api/, '/api')
       }
     }
   }

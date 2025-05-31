@@ -6,7 +6,7 @@ import { CookiesProvider } from 'react-cookie'
 
 createRoot(document.getElementById('root')!).render(
     
-  <BrowserRouter>
+  <BrowserRouter basename="/realbread">
     <CookiesProvider>
       <App />
     </CookiesProvider>

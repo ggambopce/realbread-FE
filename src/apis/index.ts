@@ -9,9 +9,11 @@ import { PostCounselTextRequestDto } from "./request/chatBot";
 import { PostCounselTextResponseDto } from "./response/chatBot";
 import { GetVisitStatsResposeDto } from "./response/statistics";
 
-const DOMAIN = 'http://localhost:8080';
+const isDev = import.meta.env.DEV;
+const API_DOMAIN = isDev 
+  ? 'http://localhost:8081/api'
+  : '/realbread/api';
 
-const API_DOMAIN = `${DOMAIN}/api`;
 
 const authorization = (accessToken: string) => { 
     return { headers: { Authorization: `Bearer ${accessToken}`}}

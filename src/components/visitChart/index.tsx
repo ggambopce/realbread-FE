@@ -78,15 +78,7 @@ export default function VisitChart({ bakeryId }: Props) {
                     <div style={{ width: '100%', height: 300 }}>
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart
-                                data={[
-                                    { date: '2025-05-19', count: 150 },
-                                    { date: '2025-05-20', count: 170 },
-                                    { date: '2025-05-22', count: 0 },
-                                    { date: '2025-05-23', count: 160 },
-                                    { date: '2025-05-24', count: 160 },
-                                    { date: '2025-05-25', count: 50 },
-                                    { date: '2025-05-26', count: 160 },
-                                ]}
+                                data={data}
                                 margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
                                 style={{ backgroundColor: 'white' }}>
                                 <CartesianGrid strokeDasharray="3 3" />
