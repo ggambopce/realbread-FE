@@ -1,13 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './style.css';
-import { getSignInUserRequest, SNS_SIGN_IN_URL } from 'apis';
+import { SNS_SIGN_IN_URL } from 'apis';
 import { AUTH_PATH, MAIN_PATH, USER_PATH } from 'app-constants';
-import kakaoLoginButton from 'assets/image/kakao-login-button.png';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useLoginUserStore from 'stores/login-user.store';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faArrowRightFromBracket, faArrowRightToBracket, faHeadset } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
@@ -17,15 +15,15 @@ interface Props {
 //          component: Header 레이아웃          //
 export default function Header({ onCounselOpen }: Props) {
     //          state: 로그인 유저 상태         //
-    const { loginUser, setLoginUser, resetLoginUser } = useLoginUserStore();
+    const { loginUser, resetLoginUser } = useLoginUserStore();
     //          state: path 상태           //
     const { pathname } = useLocation();
     //          state: cookie 상태          //
-    const [cookies, setCookie] = useCookies();
+    const [, setCookie] = useCookies();
     //          state: 로그인 상태          //
     const [isLogin, setLogin] = useState<boolean>(false);
     //          state: 인증 페이지 상태          //
-    const [isAuthPage, setAuthPage] = useState<boolean>(false);
+    const [, setAuthPage] = useState<boolean>(false);
     //          state: 메인 페이지 상태          //
     const [isMainPage, setMainPage] = useState<boolean>(false);
     //          state: 유저 페이지 상태          //

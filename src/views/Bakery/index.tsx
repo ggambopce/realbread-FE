@@ -29,7 +29,7 @@ export default function BakeryDetail({ bakery, onClose }: Props) {
     //          state: 로그인 유지 상태          //
     const { loginUser } = useLoginUserStore();
     //          state: 쿠키 상태            //
-    const [cookies, setCookies] = useCookies();
+    const [cookies, ] = useCookies();
 
     //          state: 좋아요 리스트 상태          //
     const [favoriteList, setFavoriteList] = useState<FavoriteListItem[]>([]);

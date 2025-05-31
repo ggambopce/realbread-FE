@@ -1,6 +1,6 @@
 import { PostCounselTextRequestDto } from 'apis/request/chatBot';
 import './style.css'
-import React, { ChangeEvent, useRef, KeyboardEvent, useState } from 'react'
+import { ChangeEvent, useRef, KeyboardEvent, useState } from 'react'
 import { postCounselTextRequest } from 'apis';
 import { PostCounselTextResponseDto } from 'apis/response/chatBot';
 import { ResponseDto } from 'apis/response';

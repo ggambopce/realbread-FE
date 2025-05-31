@@ -2,7 +2,7 @@ import { BakerySummary, MenuListItem } from 'types/interface/bakery-main-list.in
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart, faShareSquare } from '@fortawesome/free-regular-svg-icons';
-import { faLocationDot, faMapPin } from '@fortawesome/free-solid-svg-icons';
+import { faMapPin } from '@fortawesome/free-solid-svg-icons';
 
 
 interface Props {

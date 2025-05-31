@@ -13,7 +13,7 @@ import BakeryListItem from 'components/bakeryListItem'
 import BakeryDetailItem from 'types/interface/bakery-detail-item.interface'
 import { useNavigate, useParams } from 'react-router-dom'
 import { MAIN_PATH } from 'app-constants'
-import { GetPopularListResponseDto, GetRelationListResponseDto } from 'apis/response/search'
+import { GetPopularListResponseDto } from 'apis/response/search'
 import ChatBot from 'views/ChatBot'
 
 //          component: 메인 화면 컴포넌트           //
@@ -37,13 +37,11 @@ export default function Main() {
     setCurrentPage, setCurrentSection, setTotalList,totalList
   } = usePagination<BakerySummary>(10);
   //          state: 인기 검색어 리스트 상태          //
-  const [popularWordList, setPopularWordList] = useState<string[]>([]);
+  const [, setPopularWordList] = useState<string[]>([]);
   //          state:  이전 검색어 상태          //
   const [preSearchWord, setPreSearchWord ]  = useState<string | null>(null);
   //          state: 검색 게시물 개수 상태          //
   const [count, setCount] = useState<number>(2)
-  //          state: 관련 검색어 리스트 상태          //
-  const [relativeWordList, setRelationWordList] = useState<string[]>([]);
 
 
   //          function: get popular list response 처리 함수          //
@@ -72,17 +70,6 @@ export default function Main() {
     setTotalList(mainBakeryList);
     setCount(mainBakeryList.length);
     setPreSearchWord(searchWord);
-  }
-
-  //          function: get relation list response 처리 함수          //
-  const getRelationListResponse = (responseBody: GetRelationListResponseDto | ResponseDto | null) => {
-    if (!responseBody) return;
-    const {code} = responseBody;
-    if (code === 'DBE') alert('데이터베이스 오류입니다.');
-    if (code !== 'SU') return;
-
-    const { relativeWordList } = responseBody as GetRelationListResponseDto;
-    setRelationWordList(relativeWordList);
   }
 
 

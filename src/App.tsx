@@ -19,7 +19,7 @@ function App() {
   //          state: 로그인 유저 전역 상태          //
   const { setLoginUser, resetLoginUser} = useLoginUserStore();
   //          state: cookie 상태          //
-  const [cookies, setCookie] = useCookies();
+  const [cookies] = useCookies();
 
   //          function: get sign in user response 처리 함수         //
   const getSignInUserResponse = (responseBody: GetSignInUserResponseDto | ResponseDto | null) => {

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 import './style.css';
 import GetVisitStatsResposeDto, { VisitDailyStat } from 'apis/response/statistics/getVisitStats.response.dto';
 import { getBakeryVisitStatsRequest } from 'apis';
+import { useEffect, useState } from 'react';
 
 interface Props {
     bakeryId: number;

@@ -7,7 +7,7 @@ import { useLoginUserStore } from 'stores/index';
 export default function OAuth() {
 
   const { token, expirationTime} = useParams();
-  const [cookie, setCookie] = useCookies();
+  const [, setCookie] = useCookies();
   const navigator = useNavigate();
   const { setLoginUser, resetLoginUser } = useLoginUserStore();
 
