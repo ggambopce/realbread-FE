@@ -12,7 +12,7 @@ import { GetVisitStatsResposeDto } from "./response/statistics";
 const isDev = import.meta.env.DEV;
 const API_DOMAIN = isDev 
   ? 'http://localhost:8081/api'
-  : '/realbread/api';
+  : '/api';
 
 
 const authorization = (accessToken: string) => { 
